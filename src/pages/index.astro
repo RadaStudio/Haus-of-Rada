@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroRadiance from '../components/HeroRadiance.astro';
+import WorldIndex from '../components/WorldIndex.astro';
+import JournalCard from '../components/JournalCard.astro';
+import Contact from '../components/Contact.astro';
+
+const journalPreview = [
+  {
+    stamp: 'Guide',
+    title: 'Copenhagen, in otto luoghi di design da vivere',
+    place: 'Copenhagen, Danimarca',
+    frame: 'guida',
+    tone: 'warm' as const,
+    href: '/journal/copenhagen-design-guide',
+  },
+  {
+    stamp: 'Anatomia',
+    title: 'Perché questo hotel funziona: luce, pietra e un solo colore',
+    place: 'Anatomia di un posto',
+    frame: 'hotel',
+    tone: 'green' as const,
+    href: '/journal/anatomia-hotel-un-colore',
+  },
+  {
+    stamp: 'Oggetti',
+    title: 'La lampada che ha cambiato il modo di illuminare una stanza',
+    place: 'La storia dell’oggetto',
+    frame: 'oggetto',
+    tone: 'amber' as const,
+    href: '/journal/lampada-che-ha-cambiato',
+  },
+];
+---
+<BaseLayout transparentNav={true}>
+  <HeroRadiance />
+
+  <!-- MANIFESTO -->
+  <section class="manifesto reveal">
+    <p class="eyebrow">Il nostro sguardo</p>
+    <p class="statement">Prendiamo le cose belle e le facciamo <span class="hl">risplendere</span>: una casa, un hotel, una lampada, un <span class="amberhl">racconto</span>.</p>
+    <p class="note">Haus of Rada nasce dall’idea che il bello non vada solo costruito, ma anche capito e raccontato. Uniamo la progettazione d’interni — residenziale e horeca — alla cura di oggetti e opere, e al racconto dei luoghi che ci ispirano. Un unico gusto, molte forme.</p>
+  </section>
+
+  <!-- INDICE DEI MONDI -->
+  <WorldIndex />
+
+  <!-- PROGETTO IN EVIDENZA (banda cinematografica scura) -->
+  <section class="featured reveal">
+    <div class="featured-inner">
+      <p class="eyebrow">Progetto in evidenza</p>
+      <h3>Villa in fiore,<br />alle porte di Monza</h3>
+      <p>Una residenza dove la luce guida ogni scelta: materiali caldi, verde che entra dalle vetrate, un dettaglio sartoriale in ogni stanza.</p>
+      <a class="btn" href="/progetti/villa-in-fiore">Esplora il progetto →</a>
+    </div>
+  </section>
+
+  <!-- PREVIEW JOURNAL -->
+  <section class="journal">
+    <div class="journal-head">
+      <h2>Dal Journal — storie, guide, tecnicismi</h2>
+      <a class="btn btn--dark" href="/journal">Tutto il Journal →</a>
+    </div>
+    <div class="journal-grid">
+      {journalPreview.map((j) => <JournalCard {...j} />)}
+    </div>
+  </section>
+
+  <!-- CONTATTI + FIRMA -->
+  <Contact />
+</BaseLayout>
+
+<style>
+  /* ---------- MANIFESTO ---------- */
+  .manifesto { padding: clamp(90px, 15vh, 190px) var(--pad); max-width: 1200px; }
+  .manifesto .eyebrow { margin-bottom: 34px; }
+  .manifesto .statement {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(24px, 3.4vw, 46px);
+    line-height: 1.28;
+    letter-spacing: -.01em;
+    max-width: 20ch;
+  }
+  .manifesto .hl { font-style: italic; color: var(--green); }
+  .manifesto .amberhl { color: var(--amber); font-style: italic; }
+  .manifesto .note {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 52ch;
+    margin-top: 38px;
+    line-height: 1.7;
+  }
+
+  /* ---------- FEATURED ---------- */
+  .featured {
+    position: relative;
+    margin: clamp(30px, 6vh, 80px) 0;
+    min-height: 82vh;
+    display: flex;
+    align-items: flex-end;
+    color: var(--ivory);
+    overflow: hidden;
+    background:
+      radial-gradient(80% 120% at 20% 0%, rgba(244, 217, 160, .28), rgba(244, 217, 160, 0) 55%),
+      linear-gradient(180deg, #3a4a3c 0%, #29352b 60%, #1d2620 100%);
+  }
+  .featured::before {
+    content: "[ fotografia a tutto schermo: progetto in evidenza ]";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 226, .4);
+  }
+  .featured-inner { position: relative; z-index: 2; padding: var(--pad); max-width: 820px; }
+  .featured .eyebrow { color: var(--glow); }
+  .featured h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(34px, 6vw, 86px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: .2em 0;
+  }
+  .featured p { max-width: 44ch; color: rgba(245, 239, 226, .8); }
+  .featured .btn { margin-top: 26px; }
+
+  /* ---------- JOURNAL ---------- */
+  .journal { padding: clamp(80px, 13vh, 150px) var(--pad); }
+  .journal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+  .journal-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 52px);
+    letter-spacing: -.01em;
+    max-width: 16ch;
+  }
+  .journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+
+  @media (max-width: 860px) {
+    .journal-grid { grid-template-columns: 1fr; gap: 44px; }
+  }
+</style>

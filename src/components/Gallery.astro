@@ -1,0 +1,53 @@
+---
+// Gallery immersiva del progetto: immagini + planimetrie/render.
+// Segnaposto finché mancano gli asset reali.
+interface Props {
+  tono?: 'warm' | 'green' | 'amber' | 'stone';
+}
+const { tono = 'stone' } = Astro.props;
+const toneClass = `frame--${tono}`;
+
+const cells = [
+  { cls: 'big', label: 'fotografia principale', tone: true },
+  { cls: 'tall', label: 'dettaglio', tone: true },
+  { cls: 'wide', label: 'planimetria / pianta', tone: false },
+  { cls: '', label: 'render', tone: false },
+  { cls: '', label: 'materiali', tone: true },
+  { cls: '', label: 'scatto d’ambiente', tone: false },
+];
+---
+<div class="gallery">
+  {cells.map((c) => (
+    <div class:list={['g', c.cls, c.tone && toneClass]}>
+      <span>[ {c.label} ]</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .gallery { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(14px, 2vw, 24px); margin-top: 16px; }
+  .g {
+    border: 1px solid var(--line);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+  }
+  .g span {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: center;
+    padding: 0 10px;
+  }
+  .g.big { grid-column: span 4; aspect-ratio: 16 / 10; }
+  .g.tall { grid-column: span 2; aspect-ratio: 2 / 3; }
+  .g.wide { grid-column: span 3; aspect-ratio: 4 / 3; }
+
+  @media (max-width: 860px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .g.big, .g.wide, .g.tall { grid-column: span 2; aspect-ratio: 4 / 3; }
+  }
+</style>

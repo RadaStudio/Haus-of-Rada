@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import JournalCard from '../../components/JournalCard.astro';
+import CollectionFilter from '../../components/CollectionFilter.jsx';
+import { getCollection } from 'astro:content';
+
+// meta per serie: pill (filtro), stamp (etichetta card), frame (segnaposto)
+const SERIE = {
+  guide: { pill: 'Guide', stamp: 'Guide', frame: 'guida' },
+  anatomia: { pill: 'Anatomia di un posto', stamp: 'Anatomia', frame: 'luogo' },
+  oggetti: { pill: 'Storia dell’oggetto', stamp: 'Oggetti', frame: 'oggetto' },
+  lifestyle: { pill: 'Lifestyle', stamp: 'Lifestyle', frame: 'lifestyle' },
+};
+
+const FILTERS = [
+  { key: 'tutti', label: 'Tutte' },
+  ...Object.entries(SERIE).map(([key, m]) => ({ key, label: m.pill })),
+];
+
+const storie = (await getCollection('journal')).sort(
+  (a, b) => b.data.data.getTime() - a.data.data.getTime()
+);
+---
+<BaseLayout
+  title="Journal — Haus of Rada"
+  description="Storie, guide e tecnicismi del design: le guide alle città, l'anatomia dei luoghi, la storia degli oggetti e il lifestyle. Un post, un racconto."
+  activeNav="Journal"
+>
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">Journal</p>
+      <h1>Storie, guide,<br />tecnicismi.</h1>
+      <p>Travel, luoghi unici, oggetti iconici e lifestyle. Raccontiamo il perché una cosa è bella — non solo che lo è. Ogni articolo è anche un post: uno alla volta, senza fretta.</p>
+    </div>
+
+    <CollectionFilter
+      client:load
+      gridId="journal-grid"
+      attr="serie"
+      filters={FILTERS}
+      total={storie.length}
+      nounOne="storia"
+      nounMany="storie"
+      label="Filtra il journal per serie"
+    />
+
+    <div class="journal-grid" id="journal-grid">
+      {storie.map((s) => {
+        const m = SERIE[s.data.serie];
+        return (
+          <JournalCard
+            serie={s.data.serie}
+            stamp={m.stamp}
+            title={s.data.titolo}
+            place={s.data.luogo}
+            frame={m.frame}
+            tone={s.data.tono}
+            ratio="4/3"
+            href={`/journal/${s.id}`}
+          />
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding: calc(var(--nav-h) + 5vh) var(--pad) 0; }
+  .page-head { max-width: 1300px; margin: 0 auto clamp(30px, 5vh, 54px); }
+  .page-head .eyebrow { color: var(--amber); }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 120px);
+    line-height: .94;
+    letter-spacing: -.02em;
+    margin: .16em 0 .3em;
+  }
+  .page-head p { max-width: 52ch; color: var(--ink-soft); }
+
+  .journal-grid {
+    max-width: 1300px;
+    margin: clamp(30px, 5vh, 52px) auto clamp(80px, 12vh, 140px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(28px, 4vw, 64px);
+  }
+
+  @media (max-width: 860px) {
+    .journal-grid { grid-template-columns: 1fr; gap: 44px; }
+  }
+</style>

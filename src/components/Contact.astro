@@ -1,0 +1,145 @@
+---
+// Sezione contatti scura con la firma di Marianna + form.
+// Prima versione senza backend: invio via mailto (poi migrabile a Formspree).
+interface Props {
+  id?: string;
+}
+const { id = 'contatti' } = Astro.props;
+const email = 'hello@hausofrada.com';
+---
+<section class="contact" id={id}>
+  <div class="contact-grid">
+    <div>
+      <p class="eyebrow">Lo Studio</p>
+      <h2>Raccontiamoci il <i>prossimo</i> bel progetto.</h2>
+      <div class="signature">
+        <p>Haus of Rada è lo spazio creativo di Marianna Radaelli: progettazione d’interni, curatela e racconto del design. Ogni progetto porta uno stile, un gusto e un garbo che restano.</p>
+        <div class="name">Marianna Radaelli</div>
+        <div class="role">Fondatrice · Interior &amp; Design</div>
+        <div class="socials">
+          <a href="https://instagram.com/" rel="me noopener" target="_blank">Instagram</a>
+          <a href="https://pinterest.com/" rel="me noopener" target="_blank">Pinterest</a>
+          <a href="https://linkedin.com/" rel="me noopener" target="_blank">LinkedIn</a>
+          <a href={`mailto:${email}`}>{email}</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="form" action={`mailto:${email}`} method="post" enctype="text/plain" aria-label="Modulo di contatto">
+      <div class="field">
+        <label for="c-name">Nome</label>
+        <input id="c-name" name="nome" type="text" autocomplete="name" placeholder="Come ti chiami" required />
+      </div>
+      <div class="field">
+        <label for="c-email">Email</label>
+        <input id="c-email" name="email" type="email" autocomplete="email" placeholder="La tua email" required />
+      </div>
+      <div class="field">
+        <label for="c-budget">Budget indicativo</label>
+        <select id="c-budget" name="budget">
+          <option value="">Preferisco non indicarlo</option>
+          <option value="< 20.000 €">Fino a 20.000 €</option>
+          <option value="20–50.000 €">20.000 – 50.000 €</option>
+          <option value="50–100.000 €">50.000 – 100.000 €</option>
+          <option value="> 100.000 €">Oltre 100.000 €</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="c-msg">Il tuo progetto</label>
+        <textarea id="c-msg" name="progetto" placeholder="Raccontaci in due righe" required></textarea>
+      </div>
+      <p class="buyer-note">
+        Su richiesta offriamo anche <strong>consulenza all'acquisto</strong>: ti guidiamo nella scelta
+        dei complementi d'arredo in linea con il tuo budget, facendo da <em>buyer</em> e ottimizzando la spesa.
+      </p>
+      <button class="btn" type="submit">Invia la richiesta →</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--green-deep);
+    color: var(--ivory);
+    padding: clamp(80px, 14vh, 150px) var(--pad) clamp(60px, 10vh, 110px);
+    position: relative;
+  }
+  .contact .eyebrow { color: var(--glow); }
+  .contact h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(34px, 6.5vw, 92px);
+    line-height: .98;
+    letter-spacing: -.02em;
+    margin: .24em 0 .5em;
+    max-width: 14ch;
+  }
+  .contact h2 i { font-style: italic; color: var(--glow); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(30px, 6vw, 90px);
+    align-items: start;
+  }
+  .signature { max-width: 46ch; }
+  .signature p { color: rgba(245, 239, 226, .78); margin-bottom: 24px; }
+  .signature .name { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ivory); }
+  .signature .role {
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 226, .55);
+    margin-top: 4px;
+  }
+  .socials { display: flex; gap: 22px; margin-top: 30px; flex-wrap: wrap; }
+  .socials a {
+    font-size: 12.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 226, .7);
+    position: relative;
+  }
+  .socials a:hover, .socials a:focus-visible { color: var(--glow); }
+
+  .form { display: flex; flex-direction: column; gap: 16px; }
+  .form .field { display: flex; flex-direction: column; gap: 6px; }
+  .form label {
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(245, 239, 226, .6);
+  }
+  .form input, .form textarea, .form select {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(245, 239, 226, .3);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-size: 16px;
+    padding: 10px 0;
+    width: 100%;
+    transition: border-color .3s var(--ease);
+  }
+  .form input::placeholder, .form textarea::placeholder { color: rgba(245, 239, 226, .4); }
+  .form input:focus, .form textarea:focus, .form select:focus { outline: none; border-color: var(--glow); }
+  .form textarea { resize: vertical; min-height: 70px; }
+  .form select { appearance: none; cursor: pointer; }
+  /* le option ereditano lo sfondo del sistema: forziamo colori leggibili */
+  .form select option { color: var(--ink); background: var(--ivory); }
+  .buyer-note {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(245, 239, 226, .72);
+    border-left: 2px solid var(--gold);
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+  .buyer-note strong { color: var(--glow); font-weight: 500; }
+  .buyer-note em { font-style: italic; }
+  .form .btn { align-self: flex-start; margin-top: 8px; color: var(--ivory); }
+
+  @media (max-width: 860px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact h2 { max-width: 100%; }
+  }
+</style>

@@ -1,0 +1,18 @@
+---
+// Stamp editoriale: la firma testuale che lega sito e Instagram.
+// Es. [ Haus of Rada · Guide ]
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+<p class="stamp">[ Haus of Rada · {label} ]</p>
+
+<style>
+  .stamp {
+    font-size: 10.5px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+</style>

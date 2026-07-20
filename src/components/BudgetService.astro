@@ -1,0 +1,84 @@
+---
+// Sezione servizio "Progetta con un budget": consulenza all'acquisto / buyer.
+// Comunica che, oltre alla progettazione, guidiamo il cliente all'acquisto
+// dei complementi d'arredo in linea con il budget, ottimizzando la spesa.
+const punti = [
+  {
+    k: 'Consulenza all’acquisto',
+    t: 'Dopo il progetto, ti accompagniamo nella scelta di ogni complemento d’arredo: cosa comprare, dove e perché.',
+  },
+  {
+    k: 'Buyer dedicato',
+    t: 'Facciamo da buyer per te. Selezioniamo i pezzi giusti, trattiamo con fornitori e artigiani, gestiamo tempi e forniture.',
+  },
+  {
+    k: 'Budget ottimizzato',
+    t: 'Lavoriamo dentro il budget che ci dai, ottimizzando il risparmio: la stessa qualità, spendendo meglio.',
+  },
+];
+---
+<section class="budget" id="budget">
+  <div class="budget-head reveal">
+    <p class="eyebrow eyebrow--gold">Servizio</p>
+    <h2>Progetta con un <i>budget.</i></h2>
+    <p class="lead">
+      Quando ci chiedi una consulenza o una progettazione, puoi indicare un budget:
+      da lì non ti lasciamo soli. Oltre a disegnare lo spazio, ti guidiamo negli acquisti —
+      diventiamo il tuo <em>buyer</em> e facciamo rendere ogni euro.
+    </p>
+  </div>
+
+  <div class="budget-grid">
+    {punti.map((p) => (
+      <div class="b reveal">
+        <div class="k">{p.k}</div>
+        <p>{p.t}</p>
+      </div>
+    ))}
+  </div>
+
+  <a class="btn btn--dark" href="/contatti">Richiedi una consulenza →</a>
+</section>
+
+<style>
+  .budget {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(60px, 10vh, 120px) var(--pad);
+    border-top: 1px solid var(--line);
+  }
+  .budget-head { max-width: 760px; margin-bottom: clamp(36px, 6vh, 64px); }
+  .budget-head h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 5vw, 62px);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin: .16em 0 .4em;
+  }
+  .budget-head h2 i { font-style: italic; color: var(--amber); }
+  .budget-head .lead { font-size: clamp(16px, 1.4vw, 19px); color: var(--ink-soft); max-width: 60ch; }
+  .budget-head em { font-style: italic; color: var(--green); }
+
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 44px);
+    margin-bottom: clamp(36px, 6vh, 56px);
+  }
+  .budget-grid .b { border-top: 1px solid var(--line); padding-top: 20px; }
+  .budget-grid .k {
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 12px;
+  }
+  .budget-grid p { color: var(--ink-soft); font-size: 15px; }
+
+  .budget .btn { color: var(--ink); }
+
+  @media (max-width: 860px) {
+    .budget-grid { grid-template-columns: 1fr; }
+  }
+</style>

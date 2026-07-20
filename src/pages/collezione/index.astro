@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CollectionItemCard from '../../components/CollectionItemCard.astro';
+import { getCollection } from 'astro:content';
+
+const pezzi = (await getCollection('collezione')).sort(
+  (a, b) => a.data.ordine - b.data.ordine
+);
+---
+<BaseLayout
+  title="Collezione — Haus of Rada"
+  description="Oggetti d'arredo e opere d'arte scelti uno a uno. Oggi da ammirare, presto da portare a casa."
+  activeNav="Collezione"
+>
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">Collezione — Curatela</p>
+      <h1>Cose belle, scelte<br />una a una.</h1>
+      <p>Oggetti d’arredo e opere d’arte che scegliamo con lo stesso sguardo dei progetti: materiali veri, storie vere, una luce che li rende necessari. Oggi da ammirare — <em>presto da portare a casa.</em></p>
+    </div>
+
+    <div class="note-bar">
+      <span class="eyebrow">La collezione apre presto</span>
+      <span class="note">Ogni pezzo sarà acquistabile a breve. Per informazioni o prenotazioni, <a href="/contatti">scrivici</a>.</span>
+    </div>
+
+    <div class="grid">
+      {pezzi.map((p) => (
+        <CollectionItemCard
+          nome={p.data.nome}
+          categoria={p.data.categoria}
+          autore={p.data.autore}
+          provenienza={p.data.provenienza}
+          anno={p.data.anno}
+          storia={p.data.storia}
+          tono={p.data.tono}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding: calc(var(--nav-h) + 5vh) var(--pad) 0; }
+  .page-head { max-width: 1300px; margin: 0 auto clamp(28px, 4vh, 44px); }
+  .page-head .eyebrow { color: var(--amber); }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 120px);
+    line-height: .94;
+    letter-spacing: -.02em;
+    margin: .16em 0 .3em;
+  }
+  .page-head p { max-width: 54ch; color: var(--ink-soft); }
+  .page-head em { font-style: italic; color: var(--green); }
+
+  .note-bar {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    gap: 8px 24px;
+    flex-wrap: wrap;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+  }
+  .note-bar .note { font-size: 13.5px; color: var(--ink-soft); }
+  .note-bar .note a { color: var(--amber); text-decoration: underline; text-underline-offset: 3px; }
+
+  .grid {
+    max-width: 1300px;
+    margin: clamp(30px, 5vh, 52px) auto clamp(80px, 12vh, 140px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 52px);
+  }
+
+  @media (max-width: 980px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>

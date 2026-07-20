@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Contact from '../components/Contact.astro';
+
+const email = 'hello@hausofrada.com';
+---
+<BaseLayout
+  title="Contatti — Haus of Rada"
+  description="Parliamo del tuo progetto: progettazione d'interni, consulenza all'acquisto su budget e curatela. Su Monza e Milano."
+  activeNav="Contatti"
+>
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">Contatti</p>
+      <h1>Parliamo del<br />tuo progetto.</h1>
+      <p>Un'idea, una stanza da ripensare, un luogo da immaginare. Raccontacelo: rispondiamo a ogni richiesta, e su richiesta ti seguiamo anche negli acquisti, dentro il tuo budget.</p>
+
+      <div class="quick">
+        <div>
+          <span class="k">Email</span>
+          <a href={`mailto:${email}`}>{email}</a>
+        </div>
+        <div>
+          <span class="k">Dove</span>
+          <span>Monza · Milano</span>
+        </div>
+        <div>
+          <span class="k">Social</span>
+          <span class="links">
+            <a href="https://instagram.com/" rel="me noopener" target="_blank">Instagram</a>
+            <a href="https://pinterest.com/" rel="me noopener" target="_blank">Pinterest</a>
+            <a href="https://linkedin.com/" rel="me noopener" target="_blank">LinkedIn</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <Contact id="form" />
+</BaseLayout>
+
+<style>
+  .page { padding: calc(var(--nav-h) + 5vh) var(--pad) clamp(40px, 7vh, 80px); max-width: 1300px; margin: 0 auto; }
+  .page-head .eyebrow { color: var(--amber); }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 120px);
+    line-height: .94;
+    letter-spacing: -.02em;
+    margin: .16em 0 .3em;
+  }
+  .page-head > p { max-width: 54ch; color: var(--ink-soft); }
+
+  .quick {
+    display: flex;
+    gap: clamp(28px, 5vw, 70px);
+    flex-wrap: wrap;
+    margin-top: clamp(30px, 5vh, 50px);
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+  }
+  .quick .k {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .quick a { border-bottom: 1px solid transparent; transition: border-color .3s var(--ease); }
+  .quick a:hover, .quick a:focus-visible { border-color: var(--amber); }
+  .quick .links { display: flex; gap: 16px; flex-wrap: wrap; }
+</style>

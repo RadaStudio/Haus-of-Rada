@@ -1,0 +1,41 @@
+---
+// Card del Journal: segnaposto immagine + stamp editoriale + titolo + luogo.
+import Placeholder from './Placeholder.astro';
+import EditorialStamp from './EditorialStamp.astro';
+
+interface Props {
+  stamp: string;      // es. "Guide"
+  title: string;
+  place: string;
+  frame: string;      // etichetta segnaposto
+  tone?: 'warm' | 'green' | 'amber' | 'stone';
+  href?: string;
+  serie?: string;     // per il filtro dell'indice (data-serie)
+  ratio?: string;     // proporzione del segnaposto
+}
+const { stamp, title, place, frame, tone = 'warm', href = '/journal', serie, ratio = '3/4' } = Astro.props;
+---
+<a class="story reveal" href={href} data-serie={serie}>
+  <Placeholder label={frame} tone={tone} ratio={ratio} class="story-frame" />
+  <EditorialStamp label={stamp} />
+  <h4>{title}</h4>
+  <p class="place">{place}</p>
+</a>
+
+<style>
+  .story { display: block; }
+  .story :global(.story-frame) { margin-bottom: 18px; transition: transform .6s var(--ease); }
+  .story:hover :global(.story-frame) { transform: scale(.985); }
+  .story :global(.stamp) { margin-bottom: 10px; }
+  .story h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 27px);
+    line-height: 1.18;
+    letter-spacing: -.01em;
+  }
+  .story .place { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); letter-spacing: .05em; }
+  @media (max-width: 860px) {
+    .story :global(.story-frame) { aspect-ratio: 4/3; }
+  }
+</style>

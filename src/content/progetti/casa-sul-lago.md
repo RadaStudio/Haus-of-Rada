@@ -1,0 +1,23 @@
+---
+titolo: "Casa sul lago"
+categoria: "residenziale"
+luogo: "Lago di Como"
+anno: "2025"
+tipo: "Casa vacanza"
+mq: "260 m²"
+linea: "Nordic e mediterraneo si incontrano davanti all’acqua."
+concept:
+  - "Una casa che guarda l’acqua e ne prende i toni: grigi caldi, legni chiari, tessuti naturali."
+  - "Gli spazi esterni contano quanto gli interni: una sequenza di terrazze porta dal soggiorno fino alla riva."
+natura:
+  - { k: "La luce", t: "Riflessi dell’acqua portati dentro con superfici chiare e opache che ammorbidiscono il controluce." }
+  - { k: "Materiali", t: "Rovere sbiancato, pietra di Luserna, lino e lana. Nessun colore acceso: parla il paesaggio." }
+  - { k: "Il dettaglio", t: "Un camino sospeso a doppia faccia tra soggiorno e terrazza coperta." }
+tono: "green"
+cover: "/img/progetti/casa-sul-lago/cover.jpg"
+gallery: []
+ordine: 3
+---
+
+Casa vacanza affacciata sul Lago di Como: un progetto che prende i toni
+dell’acqua e li porta dentro, stanza dopo stanza.

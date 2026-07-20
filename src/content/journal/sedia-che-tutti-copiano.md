@@ -1,0 +1,31 @@
+---
+titolo: "La sedia che tutti hanno copiato (e nessuno ha migliorato)"
+serie: "oggetti"
+luogo: "1949 · Danimarca"
+data: 2026-02-20
+estratto: "Un pezzo di legno curvato che ha attraversato settant'anni senza una ruga: la storia della sedia più imitata del Novecento."
+tono: "green"
+cover: "/img/journal/sedia/cover.jpg"
+ordine: 5
+---
+
+Esistono oggetti che nascono già finiti. Non hanno bisogno di aggiornamenti,
+restyling, edizioni celebrative. Sono giusti la prima volta, e restano giusti
+mentre tutto il resto passa di moda.
+
+## Il gesto
+
+Uno schienale che è un solo gesto continuo, il legno piegato come se fosse sempre
+stato così. La difficoltà tecnica è enorme; il risultato sembra facile. È questa
+la firma dei grandi progetti: nascondere la fatica.
+
+## Le copie
+
+Milioni di imitazioni, in ogni materiale possibile. Nessuna migliore dell'originale,
+perché copiavano la forma senza capire il perché. La forma è la conseguenza, non
+il punto di partenza.
+
+## La lezione
+
+Un buon oggetto risponde a una domanda vera. Cambia il materiale, cambia il prezzo,
+ma la domanda resta — e finché resta, l'oggetto non invecchia.

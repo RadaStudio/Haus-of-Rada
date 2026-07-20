@@ -1,0 +1,80 @@
+---
+// Scheda catalogo Collezione. Segnaposto fotografia + etichetta
+// "Prossimamente in vendita". I campi shop (prezzo/disponibilità) restano
+// nascosti in questa fase.
+interface Props {
+  nome: string;
+  categoria: 'oggetto' | 'arte';
+  autore: string;
+  provenienza: string;
+  anno?: string;
+  storia: string;
+  tono?: 'warm' | 'green' | 'amber' | 'stone';
+}
+const { nome, categoria, autore, provenienza, anno, storia, tono = 'stone' } = Astro.props;
+const catLabel = categoria === 'arte' ? 'Arte' : 'Arredo';
+---
+<article class="item reveal">
+  <div class:list={['thumb', `frame--${tono}`]}>
+    <span class="soon">Prossimamente in vendita</span>
+    <span class="ph">[ fotografia: {nome} ]</span>
+  </div>
+  <p class="cat">{catLabel} &nbsp;·&nbsp; {provenienza}</p>
+  <h3>{nome}</h3>
+  <p class="author">{autore}{anno ? ` · ${anno}` : ''}</p>
+  <p class="story">{storia}</p>
+</article>
+
+<style>
+  .item { display: block; }
+  .thumb {
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .6s var(--ease);
+  }
+  .thumb::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--line); pointer-events: none; }
+  .item:hover .thumb { transform: scale(.985); }
+  .thumb .ph {
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    position: relative;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .thumb .soon {
+    position: absolute;
+    top: 16px; left: 16px;
+    z-index: 2;
+    font-size: 9.5px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    background: rgba(245, 239, 226, .92);
+    padding: 6px 12px;
+    border-radius: 100px;
+    color: var(--amber);
+  }
+  .cat {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .item h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(21px, 2.3vw, 28px);
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin-top: 8px;
+  }
+  .author { margin-top: 6px; font-size: 13px; color: var(--ink-soft); font-style: italic; }
+  .story { margin-top: 12px; color: var(--ink-soft); font-size: 14.5px; max-width: 42ch; }
+</style>

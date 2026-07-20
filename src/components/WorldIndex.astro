@@ -1,0 +1,123 @@
+---
+// Indice dei mondi: le tre voci di rivista (numero, titolo, immagine, freccia hover).
+import Placeholder from './Placeholder.astro';
+
+const worlds = [
+  {
+    idx: '01 — Progetti',
+    title: 'Interni',
+    href: '/progetti',
+    sub: 'Spazi progettati per essere vissuti e ricordati. Case e appartamenti, e il mondo dell’ospitalità.',
+    tags: ['Residenziale', 'Horeca · hotel, ristoranti, bar, spa'],
+    frame: 'progetto d’interni',
+    tone: 'warm' as const,
+  },
+  {
+    idx: '02 — Curatela',
+    title: 'Collezione',
+    href: '/collezione',
+    sub: 'Oggetti d’arredo e opere d’arte scelti uno a uno. Oggi da ammirare, presto da portare a casa.',
+    tags: ['Arredo', 'Arte', 'Prossimamente in vendita'],
+    frame: 'oggetto / opera',
+    tone: 'amber' as const,
+  },
+  {
+    idx: '03 — Racconto',
+    title: 'Journal',
+    href: '/journal',
+    sub: 'Travel, luoghi unici, storie e tecnicismi. Il perché una cosa è bella — non solo che lo è.',
+    tags: ['Guide', 'Storie di design', 'Lifestyle'],
+    frame: 'luogo / lifestyle',
+    tone: 'green' as const,
+  },
+];
+---
+<section class="worlds" id="mondi">
+  <div class="worlds-head">
+    <h2>I mondi di Haus of Rada</h2>
+    <span class="eyebrow">Indice — 03</span>
+  </div>
+
+  {worlds.map((w) => (
+    <a class="world reveal" href={w.href}>
+      <span class="idx">{w.idx}</span>
+      <div>
+        <div class="wtitle">{w.title}</div>
+        <p class="wsub">{w.sub}</p>
+        <div class="tags">{w.tags.map((t) => <span>{t}</span>)}</div>
+      </div>
+      <div class="world-media">
+        <Placeholder label={w.frame} tone={w.tone} class="world-frame" />
+        <span class="arrow" aria-hidden="true">→</span>
+      </div>
+    </a>
+  ))}
+</section>
+
+<style>
+  .worlds { padding: 0 var(--pad) clamp(40px, 8vh, 90px); }
+  .worlds-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 28px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .worlds-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 40px);
+    letter-spacing: -.01em;
+  }
+
+  .world {
+    display: grid;
+    grid-template-columns: .5fr 1.4fr 1fr;
+    gap: clamp(20px, 4vw, 64px);
+    align-items: center;
+    padding: clamp(30px, 5vh, 56px) 0;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    transition: padding-left .5s var(--ease);
+  }
+  .world:hover { padding-left: 14px; }
+  .world .idx { font-family: var(--serif); font-size: 14px; color: var(--amber); font-style: italic; }
+  .world .wtitle {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(30px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -.02em;
+  }
+  .world .wsub { margin-top: 14px; color: var(--ink-soft); max-width: 30ch; }
+  .world .tags { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .world .tags span {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 5px 12px;
+  }
+  .world-media { display: flex; align-items: center; gap: 20px; justify-content: flex-end; }
+  .world :global(.world-frame) { width: 100%; }
+  .world .arrow {
+    font-family: var(--serif);
+    font-size: 26px;
+    transition: transform .4s var(--ease);
+    color: var(--green);
+  }
+  .world:hover .arrow { transform: translateX(10px); }
+
+  @media (max-width: 860px) {
+    .world { grid-template-columns: 1fr; gap: 20px; }
+    .world .idx { order: -1; }
+    .world-media { justify-content: flex-start; }
+    .world .arrow { display: none; }
+    .world-media { order: 3; }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import CollectionFilter from '../../components/CollectionFilter.jsx';
+import { getCollection } from 'astro:content';
+
+const FILTERS = [
+  { key: 'tutti', label: 'Tutti' },
+  { key: 'residenziale', label: 'Residenziale' },
+  { key: 'horeca', label: 'Horeca' },
+];
+
+const progetti = (await getCollection('progetti')).sort(
+  (a, b) => a.data.ordine - b.data.ordine
+);
+---
+<BaseLayout
+  title="Progetti — Interni · Haus of Rada"
+  description="Progettazione d'interni residenziale e horeca: case, appartamenti e luoghi dell'ospitalità. La luce prima di tutto, materiali veri, un dettaglio sartoriale in ogni ambiente."
+  activeNav="Interni"
+>
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">Progetti — Interni</p>
+      <h1>Spazi che restano.</h1>
+      <p>Progettiamo case e luoghi dell’ospitalità con lo stesso sguardo: la luce prima di tutto, materiali veri, un dettaglio sartoriale in ogni ambiente. Scegli un mondo, poi entra in un progetto.</p>
+      <a class="budget-band" href="/studio#budget">
+        <span class="bb-k">Progetta con un budget</span>
+        <span class="bb-t">Oltre al progetto, ti guidiamo negli acquisti facendo da buyer — dentro il tuo budget.</span>
+        <span class="bb-a" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <CollectionFilter
+      client:load
+      gridId="progetti-grid"
+      attr="cat"
+      filters={FILTERS}
+      total={progetti.length}
+      nounOne="progetto"
+      nounMany="progetti"
+      label="Filtra i progetti per categoria"
+    />
+
+    <div class="grid" id="progetti-grid">
+      {progetti.map((p) => (
+        <ProjectCard
+          slug={p.id}
+          titolo={p.data.titolo}
+          categoria={p.data.categoria}
+          luogo={p.data.luogo}
+          anno={p.data.anno}
+          linea={p.data.linea}
+          tono={p.data.tono}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding: calc(var(--nav-h) + 5vh) var(--pad) 0; }
+  .page-head { max-width: 1300px; margin: 0 auto clamp(30px, 5vh, 54px); }
+  .page-head .eyebrow { color: var(--amber); }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 120px);
+    line-height: .94;
+    letter-spacing: -.02em;
+    margin: .16em 0 .3em;
+  }
+  .page-head p { max-width: 52ch; color: var(--ink-soft); }
+
+  .budget-band {
+    display: flex;
+    align-items: center;
+    gap: 16px 24px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    padding: 16px 22px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    max-width: 760px;
+    transition: border-color .35s var(--ease), background .35s var(--ease);
+  }
+  .budget-band:hover, .budget-band:focus-visible { border-color: var(--amber); background: var(--ivory-2); }
+  .budget-band .bb-k {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    white-space: nowrap;
+  }
+  .budget-band .bb-t { font-size: 14px; color: var(--ink-soft); flex: 1; min-width: 200px; }
+  .budget-band .bb-a { font-family: var(--serif); font-size: 20px; color: var(--green); transition: transform .35s var(--ease); }
+  .budget-band:hover .bb-a { transform: translateX(6px); }
+
+  .grid {
+    max-width: 1300px;
+    margin: clamp(30px, 5vh, 52px) auto clamp(80px, 12vh, 140px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(24px, 3.4vw, 56px);
+  }
+
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>

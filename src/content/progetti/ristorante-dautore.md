@@ -1,0 +1,23 @@
+---
+titolo: "Ristorante d’autore"
+categoria: "horeca"
+luogo: "Milano"
+anno: "2024"
+tipo: "Ristorante · fine dining"
+mq: "320 m²"
+linea: "Un’unica sala teatrale attorno alla cucina a vista."
+concept:
+  - "La cucina al centro come palcoscenico: la sala ruota attorno al pass, ogni tavolo ha la sua scena."
+  - "Materia scura e luce puntuale per un’atmosfera intima, senza mai perdere l’eleganza."
+natura:
+  - { k: "La luce", t: "Buio controllato: ogni tavolo ha una sua pozza di luce calda, il resto resta in ombra teatrale." }
+  - { k: "Materiali", t: "Noce fumé, ottone, pietra lavica, sedute in pelle color tabacco." }
+  - { k: "Il dettaglio", t: "Una cantina a vista vetrata che diventa scenografia e sfondo per la sala." }
+tono: "green"
+cover: "/img/progetti/ristorante-dautore/cover.jpg"
+gallery: []
+ordine: 5
+---
+
+Un fine dining nel centro di Milano costruito attorno alla cucina a vista:
+un’unica sala teatrale dove ogni tavolo ha la sua scena.

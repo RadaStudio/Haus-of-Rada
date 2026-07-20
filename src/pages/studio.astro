@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
+import BudgetService from '../components/BudgetService.astro';
+
+const email = 'hello@hausofrada.com';
+
+const credenziali = [
+  {
+    titolo: 'Formazione',
+    voci: [
+      'Interior Design — Politecnico di Milano (laurea triennale)',
+      'Horeca Design Indoor & Outdoor — POLI.design',
+      '3ds Max — IED Milano (2025)',
+    ],
+  },
+  {
+    titolo: 'Esperienza',
+    voci: [
+      'Dal 2021 — studio dell’Arch. Piergiorgio de Flumeri',
+      'Progettazione tecnica, rendering, rilievi, pratiche edilizie',
+      'Residenziale per privati · concept horeca in portfolio',
+    ],
+  },
+  {
+    titolo: 'Profilo',
+    voci: [
+      'Basata a Monza — lavora su Monza e Milano',
+      'Cittadinanza italiana e svizzera',
+      'Dal concept alla documentazione finale e ai render',
+    ],
+  },
+];
+
+const social = [
+  { label: 'Instagram', href: 'https://instagram.com/' },
+  { label: 'Pinterest', href: 'https://pinterest.com/' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/' },
+  { label: 'Portfolio', href: '#' },
+];
+---
+<BaseLayout
+  title="Studio — Marianna Radaelli · Haus of Rada"
+  description="Marianna Radaelli, interior designer tra Monza e Milano: progettazione residenziale e horeca, dal concept ai render. La firma di Haus of Rada."
+  activeNav="Studio"
+>
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">Lo Studio · La firma</p>
+      <h1>Marianna<br />Radaelli.</h1>
+    </div>
+
+    <section class="intro">
+      <Placeholder label="ritratto di Marianna" tone="warm" ratio="4/5" class="portrait" />
+      <div class="bio">
+        <p class="lead">Interior designer. Progetta interni tra <strong>Monza e Milano</strong> — residenziale e ospitalità — con uno sguardo che mette la luce e i materiali veri prima di tutto.</p>
+        <p>Laurea triennale in Interior Design al <strong>Politecnico di Milano</strong>, specializzazione in <strong>Horeca Design Indoor &amp; Outdoor</strong> alla POLI.design e un approfondimento in <strong>3ds Max</strong> allo IED Milano (2025).</p>
+        <p>Dal 2021 collabora con lo studio dell’<strong>Arch. Piergiorgio de Flumeri</strong>, dove segue progettazione tecnica, rendering, rilievi e pratiche edilizie. Firma progetti residenziali per privati — nuovo e ristrutturazione — dal concept alla documentazione finale, e sviluppa concept per l’ospitalità.</p>
+        <p>Cittadinanza italiana e svizzera. Dal 2026 vive e lavora a Monza.</p>
+
+        <div class="socials">
+          {social.map((s) => (
+            <a href={s.href} rel="me noopener" target="_blank">{s.label}</a>
+          ))}
+          <a href={`mailto:${email}`}>{email}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="credenziali">
+      {credenziali.map((c) => (
+        <div class="col reveal">
+          <h2>{c.titolo}</h2>
+          <ul>{c.voci.map((v) => <li>{v}</li>)}</ul>
+        </div>
+      ))}
+    </section>
+  </div>
+
+  <BudgetService />
+
+  <section class="studio-cta">
+    <div class="reveal">
+      <p class="eyebrow">Lavoriamo insieme</p>
+      <h2>Raccontami il <i>tuo</i> spazio.</h2>
+      <a class="btn" href="/contatti">Richiedi una consulenza →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page { padding: calc(var(--nav-h) + 5vh) var(--pad) 0; max-width: 1300px; margin: 0 auto; }
+  .page-head { margin-bottom: clamp(30px, 5vh, 54px); }
+  .page-head .eyebrow { color: var(--amber); }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 120px);
+    line-height: .94;
+    letter-spacing: -.02em;
+    margin: .16em 0 0;
+  }
+
+  .intro {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: clamp(30px, 6vw, 80px);
+    align-items: start;
+    padding-bottom: clamp(50px, 8vh, 90px);
+  }
+  .intro :global(.portrait) { position: sticky; top: calc(var(--nav-h) + 20px); }
+  .bio .lead {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2.8vw, 34px);
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    margin-bottom: 26px;
+  }
+  .bio p { color: var(--ink-soft); margin-bottom: 18px; max-width: 60ch; }
+  .bio strong { color: var(--ink); font-weight: 500; }
+  .bio .lead strong { color: var(--green); }
+
+  .socials { display: flex; gap: 22px; margin-top: 28px; flex-wrap: wrap; }
+  .socials a {
+    font-size: 12.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    position: relative;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .socials a:hover, .socials a:focus-visible { color: var(--ink); border-color: var(--amber); }
+
+  .credenziali {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    padding: clamp(40px, 7vh, 80px) 0 clamp(20px, 4vh, 40px);
+    border-top: 1px solid var(--line);
+  }
+  .credenziali h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 26px);
+    margin-bottom: 18px;
+  }
+  .credenziali ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .credenziali li {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+  }
+  .credenziali li::before { content: "—"; position: absolute; left: 0; color: var(--amber); }
+
+  .studio-cta {
+    background: var(--green-deep);
+    color: var(--ivory);
+    padding: clamp(70px, 12vh, 130px) var(--pad);
+    text-align: center;
+  }
+  .studio-cta .eyebrow { color: var(--glow); }
+  .studio-cta h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(32px, 6vw, 74px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: .2em 0 .6em;
+  }
+  .studio-cta h2 i { font-style: italic; color: var(--glow); }
+  .studio-cta .btn { color: var(--ivory); }
+
+  @media (max-width: 860px) {
+    .intro { grid-template-columns: 1fr; }
+    .intro :global(.portrait) { position: static; max-width: 340px; }
+    .credenziali { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

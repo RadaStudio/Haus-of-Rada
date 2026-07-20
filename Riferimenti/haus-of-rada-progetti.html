@@ -1,0 +1,361 @@
+<!--
+  HAUS OF RADA — Progetti
+  Griglia filtrabile (Residenziale / Horeca) + drill-in immersivo sul singolo progetto.
+  "L'utente accede alla natura del progetto": concept, luce, materiali, tecnicismi, planimetrie.
+  Griglia e schede sono generate da un unico oggetto dati (PROGETTI) in fondo al file.
+  I riquadri "[ fotografia: ... ]" sono segnaposto per la fotografia reale.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Instrument+Sans:ital,wght@0,400..600;1,400..500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ivory:#F5EFE2;--ivory-2:#EDE4D2;--ink:#221D15;--ink-soft:#5A5142;
+    --green:#37493A;--green-deep:#232F27;--amber:#B0742E;--gold:#B49B5C;
+    --line:rgba(34,29,21,.16);--glow:#F4D9A0;
+    --serif:"Fraunces",Georgia,serif;--sans:"Instrument Sans",-apple-system,system-ui,sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);--pad:clamp(22px,6vw,120px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--ivory);color:var(--ink);font-family:var(--sans);
+    font-size:clamp(15px,1.05vw,17px);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  button{font-family:var(--sans);cursor:pointer}
+  ::selection{background:var(--green);color:var(--ivory)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  .eyebrow{font-size:11px;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;
+    padding:16px var(--pad);background:rgba(245,239,226,.82);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+  .wordmark{font-family:var(--serif);font-weight:400;font-size:20px;display:flex;align-items:baseline;gap:.5ch}
+  .wordmark b{font-weight:600}.wordmark i{font-style:italic;color:var(--amber);font-size:.7em}
+  .nav-links{display:flex;gap:clamp(14px,2vw,32px)}
+  .nav-links a{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .3s var(--ease)}
+  .nav-links a.active{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--amber);transition:width .35s var(--ease)}
+  .nav-links a:hover::after,.nav-links a:focus-visible::after,.nav-links a.active::after{width:100%}
+
+  /* ---------- INDEX / GRID VIEW ---------- */
+  .page{padding:calc(64px + 5vh) var(--pad) 0}
+  .page-head{max-width:1300px;margin:0 auto clamp(30px,5vh,54px)}
+  .page-head .eyebrow{color:var(--amber)}
+  .page-head h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,9vw,120px);line-height:.94;letter-spacing:-.02em;margin:.16em 0 .3em}
+  .page-head p{max-width:52ch;color:var(--ink-soft)}
+
+  .controls{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:16px;padding-bottom:26px;border-bottom:1px solid var(--line)}
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .filters button{background:transparent;border:1px solid var(--line);border-radius:100px;padding:9px 20px;
+    font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);
+    transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease)}
+  .filters button:hover{border-color:var(--ink)}
+  .filters button.active{background:var(--green);color:var(--ivory);border-color:var(--green)}
+  .count{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .grid{max-width:1300px;margin:clamp(30px,5vh,52px) auto clamp(80px,12vh,140px);
+    display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(24px,3.4vw,56px)}
+  .card{cursor:pointer;opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .card.in{opacity:1;transform:none}
+  .card .thumb{aspect-ratio:5/4;border:1px solid var(--line);position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;transition:transform .6s var(--ease)}
+  .card .thumb::before{content:"";position:absolute;inset:10px;border:1px solid var(--line)}
+  .card:hover .thumb{transform:scale(.985)}
+  .card .thumb span{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);position:relative;padding:0 16px;text-align:center}
+  .card .cat{position:absolute;top:16px;left:16px;z-index:2;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    background:rgba(245,239,226,.9);padding:6px 12px;border-radius:100px;color:var(--green)}
+  .card .meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:18px;gap:16px}
+  .card h3{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.6vw,32px);line-height:1.05;letter-spacing:-.01em}
+  .card .place{font-size:12.5px;color:var(--ink-soft);letter-spacing:.04em;white-space:nowrap}
+  .card .line{margin-top:8px;color:var(--ink-soft);font-size:14.5px;max-width:44ch}
+  .card .explore{margin-top:14px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);display:inline-flex;gap:8px}
+  .card .explore span{transition:transform .4s var(--ease)}
+  .card:hover .explore span{transform:translateX(6px)}
+
+  .frame-warm{background:linear-gradient(135deg,#EFE3CB,#E7D3B0)}
+  .frame-green{background:linear-gradient(135deg,#DDE1D4,#C7CFBE)}
+  .frame-amber{background:linear-gradient(135deg,#EED9BC,#E0BE8C)}
+  .frame-stone{background:linear-gradient(135deg,#E6E0D3,#D3CBB8)}
+
+  /* ---------- DETAIL VIEW ---------- */
+  .detail{display:none}
+  .detail.show{display:block}
+  .grid-view.hide{display:none}
+
+  .d-hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;color:var(--ivory);overflow:hidden}
+  .d-hero::before{content:"[ fotografia a tutto schermo del progetto ]";position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(245,239,226,.4)}
+  .d-hero.h-res{background:radial-gradient(80% 120% at 22% 0%,rgba(244,217,160,.25),transparent 55%),linear-gradient(180deg,#4a4436,#2c2820 70%,#1e1b15)}
+  .d-hero.h-hor{background:radial-gradient(80% 120% at 22% 0%,rgba(244,217,160,.28),transparent 55%),linear-gradient(180deg,#3a4a3c,#29352b 60%,#1d2620)}
+  .d-hero-inner{position:relative;z-index:2;padding:var(--pad);max-width:900px}
+  .d-hero .eyebrow{color:var(--glow)}
+  .d-hero h2{font-family:var(--serif);font-weight:300;font-size:clamp(38px,7vw,96px);line-height:.98;letter-spacing:-.02em;margin:.18em 0 .3em}
+  .d-hero .facts{display:flex;gap:28px;flex-wrap:wrap;color:rgba(245,239,226,.82);font-size:13.5px;letter-spacing:.04em}
+  .d-hero .facts b{display:block;font-weight:400;color:rgba(245,239,226,.55);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
+
+  .backbar{position:sticky;top:0;z-index:25;background:rgba(245,239,226,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    padding:12px var(--pad);display:none}
+  .detail.show .backbar{display:block}
+  .backbtn{background:none;border:none;color:var(--ink);font-size:12px;letter-spacing:.16em;text-transform:uppercase;display:inline-flex;gap:10px;align-items:center}
+  .backbtn span{transition:transform .3s var(--ease)}
+  .backbtn:hover span{transform:translateX(-5px)}
+
+  .d-body{max-width:1200px;margin:0 auto;padding:clamp(60px,10vh,120px) var(--pad)}
+  .d-intro{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:start;padding-bottom:clamp(50px,8vh,90px);border-bottom:1px solid var(--line)}
+  .d-intro .eyebrow{color:var(--amber)}
+  .d-intro h3{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3.2vw,40px);line-height:1.25;letter-spacing:-.01em;margin-top:12px}
+  .d-intro p{color:var(--ink-soft);margin-bottom:16px}
+
+  .d-section-title{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2.6vw,32px);margin:clamp(50px,8vh,90px) 0 30px;letter-spacing:-.01em}
+  .natura{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px)}
+  .natura .n{border-top:1px solid var(--line);padding-top:20px}
+  .natura .n .k{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+  .natura .n p{color:var(--ink-soft);font-size:15px}
+
+  .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(14px,2vw,24px);margin-top:16px}
+  .gallery .g{border:1px solid var(--line);position:relative;display:flex;align-items:center;justify-content:center;min-height:150px}
+  .gallery .g span{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);text-align:center;padding:0 10px}
+  .gallery .g.big{grid-column:span 4;aspect-ratio:16/10}
+  .gallery .g.tall{grid-column:span 2;aspect-ratio:2/3}
+  .gallery .g.wide{grid-column:span 3;aspect-ratio:4/3}
+
+  .d-cta{background:var(--green-deep);color:var(--ivory);border-radius:2px;padding:clamp(40px,6vw,70px);
+    margin-top:clamp(60px,10vh,110px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .d-cta h4{font-family:var(--serif);font-weight:300;font-size:clamp(24px,3vw,38px);max-width:16ch;line-height:1.1}
+  .d-cta h4 i{font-style:italic;color:var(--glow)}
+  .btn{display:inline-flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    border:1px solid rgba(245,239,226,.5);border-radius:100px;padding:15px 28px;color:var(--ivory);
+    transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
+  .btn:hover,.btn:focus-visible{background:var(--glow);color:var(--ink);border-color:var(--glow)}
+
+  /* FOOTER */
+  footer{background:var(--green-deep);color:rgba(245,239,226,.6);padding:30px var(--pad);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11.5px;letter-spacing:.1em}
+
+  /* responsive */
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .grid{grid-template-columns:1fr}
+    .d-intro{grid-template-columns:1fr;gap:24px}
+    .natura{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+    .gallery .g.big,.gallery .g.wide,.gallery .g.tall{grid-column:span 2;aspect-ratio:4/3}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .card{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+</style>
+
+<nav>
+  <a class="wordmark" href="haus-of-rada-home.html"><b>Haus</b><i>of</i><b>Rada</b></a>
+  <div class="nav-links">
+    <a href="#" class="active">Interni</a>
+    <a href="#">Collezione</a>
+    <a href="#">Journal</a>
+    <a href="#">Studio</a>
+    <a href="#">Contatti</a>
+  </div>
+</nav>
+
+<!-- ============ GRID VIEW ============ -->
+<main class="grid-view" id="gridView">
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">Progetti — Interni</p>
+      <h1>Spazi che restano.</h1>
+      <p>Progettiamo case e luoghi dell'ospitalità con lo stesso sguardo: la luce prima di tutto, materiali veri, un dettaglio sartoriale in ogni ambiente. Scegli un mondo, poi entra in un progetto.</p>
+    </div>
+
+    <div class="controls">
+      <div class="filters" id="filters">
+        <button class="active" data-f="tutti">Tutti</button>
+        <button data-f="residenziale">Residenziale</button>
+        <button data-f="horeca">Horeca</button>
+      </div>
+      <div class="count" id="count"></div>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<!-- ============ DETAIL VIEW ============ -->
+<section class="detail" id="detail">
+  <div class="backbar">
+    <button class="backbtn" onclick="closeDetail()"><span>←</span> Tutti i progetti</button>
+  </div>
+  <div id="detailContent"></div>
+  <footer>
+    <span>© 2026 Haus of Rada — Luce sulle cose belle.</span>
+    <span>Bergamo · Milano</span>
+  </footer>
+</section>
+
+<footer id="mainFooter">
+  <span>© 2026 Haus of Rada — Luce sulle cose belle.</span>
+  <span>Bergamo · Milano</span>
+</footer>
+
+<script>
+  const PROGETTI=[
+    {id:'villa-fiore',cat:'residenziale',frame:'frame-warm',hero:'h-res',
+      titolo:'Villa in fiore',luogo:'Collina di Bergamo',anno:'2025',tipo:'Residenza privata',mq:'420 m²',
+      linea:'Una residenza dove la luce guida ogni scelta, e il verde entra dalle vetrate.',
+      concept:'Un progetto pensato attorno al sole: le stanze principali seguono la luce del giorno, dalla colazione a est al soggiorno che si accende al tramonto.',
+      concept2:'Il verde della collina non resta fuori — entra attraverso vetrate a tutta altezza e un patio interno che porta il giardino nel cuore della casa.',
+      natura:[
+        {k:'La luce',t:'Orientamento studiato stanza per stanza. Vetrate a tutta altezza a ovest, brise-soleil in legno per filtrare il sole estivo.'},
+        {k:'Materiali',t:'Pietra locale, rovere naturale, intonaci a calce. Palette calda avorio–ambra con accenti botanici.'},
+        {k:'Il dettaglio',t:'Una libreria sartoriale su misura che avvolge il camino e diventa il centro di gravità del soggiorno.'}
+      ]},
+    {id:'novecento',cat:'residenziale',frame:'frame-stone',hero:'h-res',
+      titolo:'Appartamento Novecento',luogo:'Milano, Brera',anno:'2024',tipo:'Ristrutturazione',mq:'140 m²',
+      linea:'Un classico milanese riportato alla luce, tra boiserie recuperate e linee contemporanee.',
+      concept:'Recuperare senza imbalsamare: i soffitti a cassettone e i pavimenti originali dialogano con arredi puliti e contemporanei.',
+      concept2:'Meno pareti, più luce: l’ingresso e il soggiorno diventano un unico ambiente passante, dall’affaccio sulla via al cuore della casa.',
+      natura:[
+        {k:'La luce',t:'Doppia esposizione liberata dall’abbattimento di due tramezzi. Tende a tutta parete in lino per una luce diffusa.'},
+        {k:'Materiali',t:'Parquet a spina originale restaurato, ottone brunito, marmo Verde Alpi per la cucina.'},
+        {k:'Il dettaglio',t:'Boiserie d’epoca recuperata e ridipinta in un verde profondo, cornice perfetta per la collezione d’arte.'}
+      ]},
+    {id:'casa-lago',cat:'residenziale',frame:'frame-green',hero:'h-res',
+      titolo:'Casa sul lago',luogo:'Lago d’Iseo',anno:'2025',tipo:'Casa vacanza',mq:'260 m²',
+      linea:'Nordic e mediterraneo si incontrano davanti all’acqua.',
+      concept:'Una casa che guarda l’acqua e ne prende i toni: grigi caldi, legni chiari, tessuti naturali.',
+      concept2:'Gli spazi esterni contano quanto gli interni: una sequenza di terrazze porta dal soggiorno fino alla riva.',
+      natura:[
+        {k:'La luce',t:'Riflessi dell’acqua portati dentro con superfici chiare e opache che ammorbidiscono il controluce.'},
+        {k:'Materiali',t:'Rovere sbiancato, pietra di Luserna, lino e lana. Nessun colore acceso: parla il paesaggio.'},
+        {k:'Il dettaglio',t:'Un camino sospeso a doppia faccia tra soggiorno e terrazza coperta.'}
+      ]},
+    {id:'boutique-hotel',cat:'horeca',frame:'frame-amber',hero:'h-hor',
+      titolo:'Boutique hotel',luogo:'Langhe, Piemonte',anno:'2025',tipo:'Ospitalità · 12 camere',mq:'900 m²',
+      linea:'Un cascinale tra le vigne trasformato in rifugio di design.',
+      concept:'L’identità del luogo è il progetto: pietra, mattone e legno originali restano protagonisti, con inserti contemporanei discreti.',
+      concept2:'Dodici camere, dodici micro-storie: ognuna con una vista studiata sulle vigne e una palette leggermente diversa.',
+      natura:[
+        {k:'La luce',t:'Illuminazione calda e stratificata, pensata per la sera. Nessun neon: solo sorgenti puntuali e schermate.'},
+        {k:'Materiali',t:'Muri in pietra a vista, cotto recuperato, ferro brunito, velluti color cognac negli spazi comuni.'},
+        {k:'Il dettaglio',t:'La sala colazione affacciata sulla cantina storica, con un lungo tavolo conviviale su misura.'}
+      ]},
+    {id:'ristorante',cat:'horeca',frame:'frame-green',hero:'h-hor',
+      titolo:'Ristorante d’autore',luogo:'Milano',anno:'2024',tipo:'Ristorante · fine dining',mq:'320 m²',
+      linea:'Un’unica sala teatrale attorno alla cucina a vista.',
+      concept:'La cucina al centro come palcoscenico: la sala ruota attorno al pass, ogni tavolo ha la sua scena.',
+      concept2:'Materia scura e luce puntuale per un’atmosfera intima, senza mai perdere l’eleganza.',
+      natura:[
+        {k:'La luce',t:'Buio controllato: ogni tavolo ha una sua pozza di luce calda, il resto resta in ombra teatrale.'},
+        {k:'Materiali',t:'Noce fumé, ottone, pietra lavica, sedute in pelle color tabacco.'},
+        {k:'Il dettaglio',t:'Una cantina a vista vetrata che diventa scenografia e sfondo per la sala.'}
+      ]},
+    {id:'spa',cat:'horeca',frame:'frame-stone',hero:'h-hor',
+      titolo:'Spa & wellness',luogo:'Dolomiti',anno:'2026',tipo:'Centro benessere',mq:'650 m²',
+      linea:'Il silenzio come materiale da costruzione.',
+      concept:'Un percorso sensoriale in cui luce, acqua e pietra si alternano per rallentare il respiro.',
+      concept2:'La montagna entra da grandi vetrate schermate: presente ma ovattata, mai invadente.',
+      natura:[
+        {k:'La luce',t:'Luce indiretta e mutevole che accompagna il percorso, dai toni caldi delle saune al blu delle vasche.'},
+        {k:'Materiali',t:'Pietra grigia levigata, legno di larice, microcemento, tessuti in lana cotta.'},
+        {k:'Il dettaglio',t:'Una vasca a sfioro affacciata sulle cime, allineata all’orizzonte.'}
+      ]}
+  ];
+
+  const CAT_LABEL={residenziale:'Residenziale',horeca:'Horeca'};
+  const grid=document.getElementById('grid');
+  const countEl=document.getElementById('count');
+  let current='tutti';
+
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+
+  function renderGrid(){
+    const list=PROGETTI.filter(p=>current==='tutti'||p.cat===current);
+    countEl.textContent=list.length+(list.length===1?' progetto':' progetti');
+    grid.innerHTML='';
+    list.forEach((p,i)=>{
+      const el=document.createElement('article');
+      el.className='card';el.style.transitionDelay=(i*70)+'ms';
+      el.tabIndex=0;el.setAttribute('role','button');
+      el.innerHTML=`
+        <div class="thumb ${p.frame}">
+          <span class="cat">${CAT_LABEL[p.cat]}</span>
+          <span>[ fotografia: ${p.titolo} ]</span>
+        </div>
+        <div class="meta"><h3>${p.titolo}</h3><span class="place">${p.luogo} · ${p.anno}</span></div>
+        <p class="line">${p.linea}</p>
+        <span class="explore">Esplora il progetto <span>→</span></span>`;
+      el.addEventListener('click',()=>openDetail(p.id));
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDetail(p.id)}});
+      grid.appendChild(el);io.observe(el);
+    });
+  }
+
+  document.getElementById('filters').addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');current=b.dataset.f;renderGrid();
+  });
+
+  function openDetail(id){
+    const p=PROGETTI.find(x=>x.id===id);if(!p)return;
+    const c=document.getElementById('detailContent');
+    c.innerHTML=`
+      <div class="d-hero ${p.hero}">
+        <div class="d-hero-inner">
+          <p class="eyebrow">${CAT_LABEL[p.cat]} · ${p.tipo}</p>
+          <h2>${p.titolo}</h2>
+          <div class="facts">
+            <div><b>Luogo</b>${p.luogo}</div>
+            <div><b>Anno</b>${p.anno}</div>
+            <div><b>Superficie</b>${p.mq}</div>
+            <div><b>Tipo</b>${p.tipo}</div>
+          </div>
+        </div>
+      </div>
+      <div class="d-body">
+        <div class="d-intro">
+          <div><p class="eyebrow">Il progetto</p><h3>${p.linea}</h3></div>
+          <div><p>${p.concept}</p><p>${p.concept2}</p></div>
+        </div>
+
+        <h3 class="d-section-title">La natura del progetto</h3>
+        <div class="natura">
+          ${p.natura.map(n=>`<div class="n"><div class="k">${n.k}</div><p>${n.t}</p></div>`).join('')}
+        </div>
+
+        <h3 class="d-section-title">Immagini &amp; planimetrie</h3>
+        <div class="gallery">
+          <div class="g big ${p.frame}"><span>[ fotografia principale ]</span></div>
+          <div class="g tall ${p.frame}"><span>[ dettaglio ]</span></div>
+          <div class="g wide"><span>[ planimetria / pianta ]</span></div>
+          <div class="g"><span>[ render ]</span></div>
+          <div class="g ${p.frame}"><span>[ materiali ]</span></div>
+          <div class="g"><span>[ scatto d’ambiente ]</span></div>
+        </div>
+
+        <div class="d-cta">
+          <h4>Un progetto simile <i>in mente?</i></h4>
+          <a class="btn" href="#" onclick="return false">Richiedi una consulenza →</a>
+        </div>
+      </div>`;
+    document.getElementById('gridView').classList.add('hide');
+    document.getElementById('mainFooter').style.display='none';
+    document.getElementById('detail').classList.add('show');
+    window.scrollTo({top:0,behavior:'instant' in window?'instant':'auto'});
+  }
+
+  function closeDetail(){
+    document.getElementById('detail').classList.remove('show');
+    document.getElementById('gridView').classList.remove('hide');
+    document.getElementById('mainFooter').style.display='flex';
+    window.scrollTo({top:0});
+  }
+
+  renderGrid();
+</script>

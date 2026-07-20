@@ -1,0 +1,30 @@
+---
+titolo: "L'arte di apparecchiare: la tavola come piccolo progetto"
+serie: "lifestyle"
+luogo: "Lifestyle"
+data: 2026-01-15
+estratto: "Apparecchiare bene non è questione di posate d'argento, ma di attenzione: la tavola è l'interior design più veloce che esista."
+tono: "warm"
+cover: "/img/journal/tavola/cover.jpg"
+ordine: 6
+---
+
+C'è un progetto di interni che rifacciamo ogni giorno, spesso senza accorgercene:
+la tavola. Cambia in pochi minuti, non costa nulla, eppure decide l'umore di una
+cena più di quanto faccia una parete.
+
+## La regola dei materiali veri
+
+Lino invece di sintetico, ceramica invece di plastica, un fiore vero anche se solo
+uno. La tavola sente la stessa differenza di una stanza: i materiali onesti si
+riconoscono al tatto prima che alla vista.
+
+## La luce, di nuovo
+
+Una candela bassa fa alla tavola quello che una lampada ben puntata fa a una stanza:
+raccoglie, scalda, invita a restare. Spegni il lampadario, sempre.
+
+## Il lusso di togliere
+
+Meno oggetti, più spazio tra le persone. Apparecchiare bene, alla fine, è la stessa
+disciplina del progettare bene: sapere cosa lasciare fuori.

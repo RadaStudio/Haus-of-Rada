@@ -1,0 +1,28 @@
+---
+// Footer globale (thin bar). Scuro --green-deep, firma + città.
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <a class="wordmark" href="/" aria-label="Haus of Rada — home"><b>Haus</b><i>of</i><b>Rada</b></a>
+  <span class="tag">© {year} Haus of Rada — Luce sulle cose belle.</span>
+  <span class="city">Monza · Milano</span>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--green-deep);
+    color: rgba(245, 239, 226, .6);
+    padding: 30px var(--pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    font-size: 11.5px;
+    letter-spacing: .1em;
+  }
+  .site-footer .wordmark { color: rgba(245, 239, 226, .85); font-size: 17px; }
+  .site-footer .wordmark i { color: var(--gold); }
+  .site-footer .city { text-transform: uppercase; letter-spacing: .14em; }
+</style>

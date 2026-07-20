@@ -1,0 +1,37 @@
+---
+titolo: "Copenhagen, in otto luoghi di design da vivere"
+serie: "guide"
+luogo: "Copenhagen, Danimarca"
+data: 2026-06-23
+estratto: "Una guida per chi vuole capire il design danese non dai libri ma dai luoghi: hotel, caffè, showroom e una sedia da provare almeno una volta."
+tono: "warm"
+cover: "/img/journal/copenhagen/cover.jpg"
+# Link affiliati (earning per click) — sostituire gli URL con i link affiliati reali.
+indirizzi:
+  - { label: "Dormire — un boutique hotel di design", url: "https://example.com/copenhagen-hotel", tipo: "hotel", nota: "Camere con lampade d'autore e colazione nordica." }
+  - { label: "Sedersi — il caffè con le sedie che non hanno mai cambiato", url: "https://example.com/copenhagen-cafe", tipo: "luogo" }
+  - { label: "Portare a casa — lo store di ceramiche danesi", url: "https://example.com/copenhagen-store", tipo: "store", nota: "Spedizioni in Italia." }
+ordine: 1
+---
+
+Il design danese non si spiega, si abita. A Copenhagen la luce è poca e preziosa,
+e questo ha insegnato a una città intera a costruire attorno al calore: legni
+chiari, tessuti onesti, oggetti che durano più di chi li compra.
+
+## Dove dormire
+
+Comincia da un [hotel che sia già un manifesto](https://example.com/copenhagen-hotel). Le stanze migliori qui non gridano:
+una lampada Henningsen sul comodino, una poltrona che conosci a memoria, e finestre
+che trattano la luce come un ospite d'onore.
+
+## Dove sedersi
+
+Un caffè vale il viaggio se ti fa venire voglia di restare. Cerca i tavoli di
+marmo consumato, le sedie curve che nessuno ha mai sostituito perché non ne hanno
+avuto bisogno. È lì che si capisce cosa significa *hygge* applicato al progetto.
+
+## Cosa portare a casa
+
+Non un souvenir: un oggetto. Una candela, una ceramica, un vaso. Qualcosa che
+continui a raccontare Copenhagen quando la nebbia di casa sembra troppo simile a
+quella danese, ma senza la stessa grazia.

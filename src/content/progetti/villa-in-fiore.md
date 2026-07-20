@@ -1,0 +1,23 @@
+---
+titolo: "Villa in fiore"
+categoria: "residenziale"
+luogo: "Monza"
+anno: "2025"
+tipo: "Residenza privata"
+mq: "420 m²"
+linea: "Una residenza dove la luce guida ogni scelta, e il verde entra dalle vetrate."
+concept:
+  - "Un progetto pensato attorno al sole: le stanze principali seguono la luce del giorno, dalla colazione a est al soggiorno che si accende al tramonto."
+  - "Il verde intorno non resta fuori — entra attraverso vetrate a tutta altezza e un patio interno che porta il giardino nel cuore della casa."
+natura:
+  - { k: "La luce", t: "Orientamento studiato stanza per stanza. Vetrate a tutta altezza a ovest, brise-soleil in legno per filtrare il sole estivo." }
+  - { k: "Materiali", t: "Pietra locale, rovere naturale, intonaci a calce. Palette calda avorio–ambra con accenti botanici." }
+  - { k: "Il dettaglio", t: "Una libreria sartoriale su misura che avvolge il camino e diventa il centro di gravità del soggiorno." }
+tono: "warm"
+cover: "/img/progetti/villa-in-fiore/cover.jpg"
+gallery: []
+ordine: 1
+---
+
+Villa unifamiliare immersa nel verde alle porte di Monza: un progetto in cui
+la luce naturale è il primo materiale del progetto.

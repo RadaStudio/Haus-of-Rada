@@ -1,0 +1,23 @@
+---
+titolo: "Boutique hotel"
+categoria: "horeca"
+luogo: "Valchiavenna"
+anno: "2025"
+tipo: "Ospitalità · 12 camere"
+mq: "900 m²"
+linea: "Un edificio in pietra tra le montagne trasformato in rifugio di design."
+concept:
+  - "L’identità del luogo è il progetto: pietra, legno e i crotti tipici della valle restano protagonisti, con inserti contemporanei discreti."
+  - "Dodici camere, dodici micro-storie: ognuna con una vista studiata sulla valle e una palette leggermente diversa."
+natura:
+  - { k: "La luce", t: "Illuminazione calda e stratificata, pensata per la sera in montagna. Nessun neon: solo sorgenti puntuali e schermate." }
+  - { k: "Materiali", t: "Muri in pietra a vista, legno di larice, ferro brunito, velluti color cognac negli spazi comuni." }
+  - { k: "Il dettaglio", t: "La sala colazione ricavata in un antico crotto, con un lungo tavolo conviviale su misura." }
+tono: "amber"
+cover: "/img/progetti/boutique-hotel/cover.jpg"
+gallery: []
+ordine: 4
+---
+
+Un antico edificio in pietra della Valchiavenna trasformato in boutique hotel:
+dodici camere che raccontano la valle, una a una.

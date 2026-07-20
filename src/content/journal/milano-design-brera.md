@@ -1,0 +1,29 @@
+---
+titolo: "Milano, otto indirizzi di design tra Brera e Porta Venezia"
+serie: "guide"
+luogo: "Milano, Italia"
+data: 2026-05-12
+estratto: "Non la Milano della settimana del design, ma quella dei giorni normali: cortili, gallerie, botteghe e un aperitivo dove la luce è progettata bene."
+tono: "green"
+cover: "/img/journal/milano/cover.jpg"
+ordine: 2
+---
+
+Milano si mostra a chi rallenta. Dietro i portoni di Brera ci sono cortili che
+valgono più delle vetrine, e a Porta Venezia le palazzine liberty raccontano un
+gusto che la città ha sempre avuto e raramente esibisce.
+
+## Le gallerie
+
+Comincia da uno spazio piccolo, di quelli con tre pezzi in tutto e un gallerista
+che ha voglia di parlarne. È lì che si compra con la testa, non con l'algoritmo.
+
+## Le botteghe
+
+Un tappezziere, un corniciaio, un restauratore. Sono loro la vera filiera del bello:
+mani che tengono in vita oggetti che l'industria avrebbe già dimenticato.
+
+## L'ora dell'aperitivo
+
+Scegli un bar dove la luce cade bene sui volti. Se il progettista ha lavorato con
+cura, te ne accorgi senza saperlo: ti fermi mezz'ora in più.

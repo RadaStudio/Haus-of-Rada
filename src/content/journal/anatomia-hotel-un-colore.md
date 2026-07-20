@@ -1,0 +1,30 @@
+---
+titolo: "Perché questo hotel funziona: luce, pietra e un solo colore"
+serie: "anatomia"
+luogo: "Costiera, Italia"
+data: 2026-04-03
+estratto: "Smontiamo un progetto di ospitalità riuscito per capire le scelte tecniche che lo tengono in piedi: materiali, temperatura della luce, disciplina cromatica."
+tono: "stone"
+cover: "/img/journal/anatomia-hotel/cover.jpg"
+ordine: 3
+---
+
+Ci sono hotel che ti mettono a tuo agio senza che tu sappia perché. Non è magia:
+è progetto. Proviamo a smontarlo, come si fa con un orologio, per vedere gli
+ingranaggi.
+
+## La disciplina del colore
+
+Il segreto è la rinuncia. Un solo colore dominante, declinato in cinque toni, e
+il resto lasciato ai materiali. Dove gli altri aggiungono, qui si toglie: ed è il
+togliere che dà l'impressione di lusso.
+
+## La temperatura della luce
+
+Niente luce fredda, mai. Le sorgenti stanno sui 2700 kelvin, schermate, basse.
+La sera l'albergo si accende come una casa, non come una hall.
+
+## La pietra che invecchia bene
+
+Il pavimento è pietra locale, posata a correre, volutamente imperfetta. Tra dieci
+anni sarà più bella di oggi: è la differenza tra un materiale e una finitura.
