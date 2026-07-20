@@ -27,7 +27,7 @@ function affiliateExternalLinks() {
 // Portfolio + journal editoriale: build statica, servita da Vercel.
 // React island solo dove serve interattività (i filtri di Progetti/Journal).
 export default defineConfig({
-  site: 'https://hausofrada.com',
+  site: 'https://haus-of-rada.com',
   integrations: [react()],
   adapter: vercel(),
   markdown: {
