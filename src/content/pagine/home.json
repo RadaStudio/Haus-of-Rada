@@ -1,9 +1,9 @@
 {
-  "heroEyebrow": "Atelier di interni · Collezione · Journal",
+  "heroEyebrow": "Atelier di interni",
   "heroTagline": "Luce sulle cose belle.",
-  "heroSub": "Progetto spazi, curo oggetti e racconto piccoli spazi di design dal mondo — con competenza, cura e garbo.",
-  "manifestoEyebrow": "Il nostro sguardo",
-  "manifestoStatement": "Prendiamo le cose belle e le facciamo *risplendere*: una casa, un hotel, una lampada, un ~racconto~.",
+  "heroSub": "Progetto ambienti, studio gli oggetti e racconto piccoli spazi di design dal mondo con competenza, cura e garbo.",
+  "manifestoEyebrow": "Il mio sguardo sul progetto",
+  "manifestoStatement": "Arredare non significa fare scenografie, non significa fare belle immagini per le riviste; è piuttosto creare una qualità di vita, una bellezza che nutre l'anima",
   "manifestoNota": "Haus of Rada nasce dall'idea che il bello non vada solo costruito, ma anche cercato, vissuto e raccontato. Desidero unire la progettazione d'interni alla cura di oggetti, opere ed esperienze, sempre vicini al racconto dei luoghi e delle persone che ci ispirano. Un unico gusto, espresso molte forme.",
   "worldsTitolo": "I mondi di Haus of Rada",
   "worldsIndice": "Indice — 03",
@@ -12,7 +12,7 @@
       "idx": "01 — Progetti",
       "titolo": "Interni",
       "href": "/progetti",
-      "sub": "Spazi progettati per essere vissuti e ricordati. Case e appartamenti, e il mondo dell'ospitalità.",
+      "sub": "Spazi progettati per essere vissuti e ricordati. Dalle abitazioni private all' HoReCa",
       "tags": [
         "Residenziale",
         "Horeca · hotel, ristoranti, bar, spa"
@@ -21,7 +21,7 @@
       "tono": "warm"
     },
     {
-      "idx": "02 — Curatela",
+      "idx": "02 — Cura",
       "titolo": "Collezione",
       "href": "/collezione",
       "sub": "Oggetti d'arredo e opere d'arte scelti uno a uno. Oggi da ammirare, presto da portare a casa.",
@@ -37,11 +37,11 @@
       "idx": "03 — Racconto",
       "titolo": "Journal",
       "href": "/journal",
-      "sub": "Travel, luoghi unici, storie e tecnicismi. Il perché una cosa è bella — non solo che lo è.",
+      "sub": "personaggi, oggetti iconici, luoghi unici, storie e tecnicismi. Un piccolo diario all'insegna del gusto di vivere e conoscere qualcosa di nuovo che lascia il segno.",
       "tags": [
-        "Guide",
+        "Guide all'arredo",
         "Storie di design",
-        "Lifestyle"
+        "Esperienze"
       ],
       "frame": "luogo / lifestyle",
       "tono": "green"
