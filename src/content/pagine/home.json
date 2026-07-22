@@ -1,16 +1,51 @@
 {
   "heroEyebrow": "Atelier di interni · Collezione · Journal",
   "heroTagline": "Luce sulle cose belle.",
-  "heroSub": "Progettiamo spazi, curiamo oggetti e raccontiamo il design del mondo — con competenza, gusto e un certo garbo.",
+  "heroSub": "Progetto spazi, curo oggetti e racconto piccoli spazi di design dal mondo — con competenza, cura e garbo.",
   "manifestoEyebrow": "Il nostro sguardo",
   "manifestoStatement": "Prendiamo le cose belle e le facciamo *risplendere*: una casa, un hotel, una lampada, un ~racconto~.",
-  "manifestoNota": "Haus of Rada nasce dall'idea che il bello non vada solo costruito, ma anche capito e raccontato. Uniamo la progettazione d'interni — residenziale e horeca — alla cura di oggetti e opere, e al racconto dei luoghi che ci ispirano. Un unico gusto, molte forme.",
+  "manifestoNota": "Haus of Rada nasce dall'idea che il bello non vada solo costruito, ma anche cercato, vissuto e raccontato. Desidero unire la progettazione d'interni alla cura di oggetti, opere ed esperienze, sempre vicini al racconto dei luoghi e delle persone che ci ispirano. Un unico gusto, espresso molte forme.",
   "worldsTitolo": "I mondi di Haus of Rada",
   "worldsIndice": "Indice — 03",
   "worlds": [
-    { "idx": "01 — Progetti", "titolo": "Interni", "href": "/progetti", "sub": "Spazi progettati per essere vissuti e ricordati. Case e appartamenti, e il mondo dell'ospitalità.", "tags": ["Residenziale", "Horeca · hotel, ristoranti, bar, spa"], "frame": "progetto d'interni", "tono": "warm" },
-    { "idx": "02 — Curatela", "titolo": "Collezione", "href": "/collezione", "sub": "Oggetti d'arredo e opere d'arte scelti uno a uno. Oggi da ammirare, presto da portare a casa.", "tags": ["Arredo", "Arte", "Prossimamente in vendita"], "frame": "oggetto / opera", "tono": "amber" },
-    { "idx": "03 — Racconto", "titolo": "Journal", "href": "/journal", "sub": "Travel, luoghi unici, storie e tecnicismi. Il perché una cosa è bella — non solo che lo è.", "tags": ["Guide", "Storie di design", "Lifestyle"], "frame": "luogo / lifestyle", "tono": "green" }
+    {
+      "idx": "01 — Progetti",
+      "titolo": "Interni",
+      "href": "/progetti",
+      "sub": "Spazi progettati per essere vissuti e ricordati. Case e appartamenti, e il mondo dell'ospitalità.",
+      "tags": [
+        "Residenziale",
+        "Horeca · hotel, ristoranti, bar, spa"
+      ],
+      "frame": "progetto d'interni",
+      "tono": "warm"
+    },
+    {
+      "idx": "02 — Curatela",
+      "titolo": "Collezione",
+      "href": "/collezione",
+      "sub": "Oggetti d'arredo e opere d'arte scelti uno a uno. Oggi da ammirare, presto da portare a casa.",
+      "tags": [
+        "Arredo",
+        "Arte",
+        "Prossimamente in vendita"
+      ],
+      "frame": "oggetto / opera",
+      "tono": "amber"
+    },
+    {
+      "idx": "03 — Racconto",
+      "titolo": "Journal",
+      "href": "/journal",
+      "sub": "Travel, luoghi unici, storie e tecnicismi. Il perché una cosa è bella — non solo che lo è.",
+      "tags": [
+        "Guide",
+        "Storie di design",
+        "Lifestyle"
+      ],
+      "frame": "luogo / lifestyle",
+      "tono": "green"
+    }
   ],
   "featuredEyebrow": "Progetto in evidenza",
   "featuredTitolo": "Villa in fiore,\nalle porte di Monza",
@@ -20,8 +55,29 @@
   "journalHeading": "Dal Journal — storie, guide, tecnicismi",
   "journalCta": "Tutto il Journal →",
   "journalPreview": [
-    { "stamp": "Guide", "title": "Copenhagen, in otto luoghi di design da vivere", "place": "Copenhagen, Danimarca", "frame": "guida", "tono": "warm", "href": "/journal/copenhagen-design-guide" },
-    { "stamp": "Anatomia", "title": "Perché questo hotel funziona: luce, pietra e un solo colore", "place": "Anatomia di un posto", "frame": "hotel", "tono": "green", "href": "/journal/anatomia-hotel-un-colore" },
-    { "stamp": "Oggetti", "title": "La lampada che ha cambiato il modo di illuminare una stanza", "place": "La storia dell'oggetto", "frame": "oggetto", "tono": "amber", "href": "/journal/lampada-che-ha-cambiato" }
+    {
+      "stamp": "Guide",
+      "title": "Copenhagen, in otto luoghi di design da vivere",
+      "place": "Copenhagen, Danimarca",
+      "frame": "guida",
+      "tono": "warm",
+      "href": "/journal/copenhagen-design-guide"
+    },
+    {
+      "stamp": "Anatomia",
+      "title": "Perché questo hotel funziona: luce, pietra e un solo colore",
+      "place": "Anatomia di un posto",
+      "frame": "hotel",
+      "tono": "green",
+      "href": "/journal/anatomia-hotel-un-colore"
+    },
+    {
+      "stamp": "Oggetti",
+      "title": "La lampada che ha cambiato il modo di illuminare una stanza",
+      "place": "La storia dell'oggetto",
+      "frame": "oggetto",
+      "tono": "amber",
+      "href": "/journal/lampada-che-ha-cambiato"
+    }
   ]
 }
