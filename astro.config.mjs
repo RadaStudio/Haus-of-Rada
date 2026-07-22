@@ -34,6 +34,16 @@ export default defineConfig({
   site: 'https://haus-of-rada.com',
   integrations: [react(), markdoc(), keystatic()],
   adapter: vercel(),
+  // Su Vercel il Host della function è "localhost": senza questo, Astro non si fida
+  // dell'header x-forwarded-host e Keystatic costruisce redirect_uri=https://localhost.
+  // Elencando i domini di produzione, request.url usa l'host reale e l'OAuth GitHub funziona.
+  security: {
+    allowedDomains: [
+      { hostname: 'haus-of-rada.vercel.app' },
+      { hostname: 'haus-of-rada.com' },
+      { hostname: 'www.haus-of-rada.com' },
+    ],
+  },
   markdown: {
     rehypePlugins: [affiliateExternalLinks],
   },
