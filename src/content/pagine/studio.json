@@ -1,26 +1,51 @@
 {
-  "pageEyebrow": "Lo Studio · La firma",
+  "pageEyebrow": "Il Progetto · La firma",
   "pageTitolo": "Marianna\nRadaelli.",
   "portraitLabel": "ritratto di Marianna",
-  "bioLead": "Interior designer. Progetta interni tra *Monza e Milano* — residenziale e ospitalità — con uno sguardo che mette la luce e i materiali veri prima di tutto.",
+  "bioLead": "Sono un' Interior designer e progetto interni tra Monza, Lecco e Milano. Posso realizzare progetti sia in ambito residenziale che HoReCa, la mia vera, grande passione.",
   "bioParagrafi": [
-    "Laurea triennale in Interior Design al Politecnico di Milano, specializzazione in Horeca Design Indoor & Outdoor alla POLI.design e un approfondimento in 3ds Max allo IED Milano (2025).",
-    "Dal 2021 collabora con lo studio dell'Arch. Piergiorgio de Flumeri, dove segue progettazione tecnica, rendering, rilievi e pratiche edilizie. Firma progetti residenziali per privati — nuovo e ristrutturazione — dal concept alla documentazione finale, e sviluppa concept per l'ospitalità.",
-    "Cittadinanza italiana e svizzera. Dal 2026 vive e lavora a Monza."
+    "Ho una Laurea triennale in Interior Design al Politecnico di Milano (2021), specializzazione in Horeca Design Indoor & Outdoor alla POLI.design e ho seguito dei corsi per renderizzazione di 3ds Max allo IED Milano",
+    "Dal 2021 collaboro con lo studio dell'Arch. de Flumeri, occupandomi di progettazione tecnica, rendering, rilievi e pratiche edilizie. Ho seguito progetti residenziali per privati — nuovo e ristrutturazione — dal concept alla realizzazione finale.",
+    "Sono Lecchese di nascita con orgini Svizzere, dal 2026 vivo a Monza.\nSono spesso divisa tra Milano, Monza, Lecco e la Valchiavenna"
   ],
   "credenziali": [
-    { "titolo": "Formazione", "voci": ["Interior Design — Politecnico di Milano (laurea triennale)", "Horeca Design Indoor & Outdoor — POLI.design", "3ds Max — IED Milano (2025)"] },
-    { "titolo": "Esperienza", "voci": ["Dal 2021 — studio dell'Arch. Piergiorgio de Flumeri", "Progettazione tecnica, rendering, rilievi, pratiche edilizie", "Residenziale per privati · concept horeca in portfolio"] },
-    { "titolo": "Profilo", "voci": ["Basata a Monza — lavora su Monza e Milano", "Cittadinanza italiana e svizzera", "Dal concept alla documentazione finale e ai render"] }
+    {
+      "titolo": "Formazione",
+      "voci": [
+        "Laurea in Interior Design — Politecnico di Milano (2021)",
+        "Horeca Design Indoor & Outdoor — POLI.design (2023)",
+        "3ds Max — IED Milano (2025)"
+      ]
+    },
+    {
+      "titolo": "Esperienza",
+      "voci": [
+        "Dal 2021 — studio dell'Arch. Piergiorgio de Flumeri",
+        "Progettazione tecnica di edifici interni ed esterni, rendering, rilievi, pratiche edilizie"
+      ]
+    },
+    {
+      "titolo": "Profilo",
+      "voci": [
+        "Basata a Monza — lavora su Monza e Milano",
+        "Cittadinanza italiana e svizzera",
+        "Dal concept alla documentazione finale e ai render"
+      ]
+    }
   ],
   "portfolioHref": "#",
   "budgetEyebrow": "Servizio",
   "budgetTitolo": "Progetta con un *budget.*",
   "budgetLead": "Quando ci chiedi una consulenza o una progettazione, puoi indicare un budget: da lì non ti lasciamo soli. Oltre a disegnare lo spazio, ti guidiamo negli acquisti — diventiamo il tuo *buyer* e facciamo rendere ogni euro.",
   "budgetPunti": [
-    { "k": "Consulenza all'acquisto", "t": "Dopo il progetto, ti accompagniamo nella scelta di ogni complemento d'arredo: cosa comprare, dove e perché." },
-    { "k": "Buyer dedicato", "t": "Facciamo da buyer per te. Selezioniamo i pezzi giusti, trattiamo con fornitori e artigiani, gestiamo tempi e forniture." },
-    { "k": "Budget ottimizzato", "t": "Lavoriamo dentro il budget che ci dai, ottimizzando il risparmio: la stessa qualità, spendendo meglio." }
+    {
+      "k": "Consulenza all'acquisto",
+      "t": "Dopo il progetto, ti accompagno nella scelta di ogni complemento d'arredo: cosa comprare, dove e perché."
+    },
+    {
+      "k": "Un Furniture Buyer Dedicato",
+      "t": "Vivo ogni giorno in mezzo a grandi negoziatori (nella vita, e nel lavoro), ho imparato anche io ad essere uno di loro seguendo i loro approcci e consigli. \n\nCerco e seleziono i migliori fornitori e prodotti al fine di poter offrire soluzioni di acquisto ai pezzi giusti, massimizzando l'acquistato nei limiti del budget del cliente.\n\nDisponibile a trattare con fornitori, gestendo tempi e forniture al fine di rendere la tua esperienza di arredo il più semplice possibile.\n\nPosso agire in autonomia direttamente con aziende, artigiani e negozi oppure seguire il cliente nell'esperienza di acquisto in negozio, come una personal shopper pronta ad offrire la propria consulenza al cliente."
+    }
   ],
   "budgetCta": "Richiedi una consulenza →",
   "ctaEyebrow": "Lavoriamo insieme",
