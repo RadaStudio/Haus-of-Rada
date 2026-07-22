@@ -1,0 +1,23 @@
+---
+// Render del nodo `link` per i contenuti Markdoc (editati da Keystatic).
+// Replica il comportamento del rehype plugin usato per i .md: i link esterni
+// diventano affiliati (target _blank + rel="sponsored…") per l'earning per click.
+interface Props {
+  href?: string;
+  title?: string;
+}
+const { href = '', title } = Astro.props;
+const external = /^https?:\/\//i.test(href);
+---
+{external ? (
+  <a
+    href={href}
+    title={title}
+    target="_blank"
+    rel="sponsored nofollow noopener noreferrer"
+    class="ext-link"
+    data-affiliate="true"
+  ><slot /></a>
+) : (
+  <a href={href} title={title}><slot /></a>
+)}

@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import markdoc from '@astrojs/markdoc';
+import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
 
 // Rehype plugin (senza dipendenze): marca i link esterni del corpo articolo
@@ -24,11 +26,13 @@ function affiliateExternalLinks() {
   };
 }
 
-// Portfolio + journal editoriale: build statica, servita da Vercel.
-// React island solo dove serve interattività (i filtri di Progetti/Journal).
+// Portfolio + journal editoriale: build statica (output: 'static'), servita da Vercel.
+// Keystatic inietta da sé le rotte server (/keystatic + /api/keystatic) come
+// on-demand: con l'adapter Vercel funzionano anche in output static.
+// React island per i filtri di Progetti/Journal; Markdoc per i contenuti editati da Keystatic.
 export default defineConfig({
   site: 'https://haus-of-rada.com',
-  integrations: [react()],
+  integrations: [react(), markdoc(), keystatic()],
   adapter: vercel(),
   markdown: {
     rehypePlugins: [affiliateExternalLinks],

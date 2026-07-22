@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 // Progetti d'interni — residenziale + horeca.
 // Schema tipizzato con Zod. L'id dell'entry = nome del file (slug).
 const progetti = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/progetti' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/progetti' }),
   schema: z.object({
     titolo: z.string(),
     categoria: z.enum(['residenziale', 'horeca']),
@@ -27,7 +27,7 @@ const progetti = defineCollection({
 // I campi shop (prezzo, valuta, disponibile) sono già previsti ma NON mostrati:
 // oggi tutto è "prossimamente in vendita".
 const collezione = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/collezione' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/collezione' }),
   schema: z.object({
     nome: z.string(),
     categoria: z.enum(['oggetto', 'arte']),   // oggetto d'arredo | opera d'arte
@@ -47,7 +47,7 @@ const collezione = defineCollection({
 
 // Journal — indice per serie (Task 4).
 const journal = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/journal' }),
+  loader: glob({ pattern: '**/*.{md,mdoc}', base: './src/content/journal' }),
   schema: z.object({
     titolo: z.string(),
     serie: z.enum(['guide', 'anatomia', 'oggetti', 'lifestyle']),
