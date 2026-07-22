@@ -1,0 +1,29 @@
+{
+  "pageEyebrow": "Lo Studio · La firma",
+  "pageTitolo": "Marianna\nRadaelli.",
+  "portraitLabel": "ritratto di Marianna",
+  "bioLead": "Interior designer. Progetta interni tra *Monza e Milano* — residenziale e ospitalità — con uno sguardo che mette la luce e i materiali veri prima di tutto.",
+  "bioParagrafi": [
+    "Laurea triennale in Interior Design al Politecnico di Milano, specializzazione in Horeca Design Indoor & Outdoor alla POLI.design e un approfondimento in 3ds Max allo IED Milano (2025).",
+    "Dal 2021 collabora con lo studio dell'Arch. Piergiorgio de Flumeri, dove segue progettazione tecnica, rendering, rilievi e pratiche edilizie. Firma progetti residenziali per privati — nuovo e ristrutturazione — dal concept alla documentazione finale, e sviluppa concept per l'ospitalità.",
+    "Cittadinanza italiana e svizzera. Dal 2026 vive e lavora a Monza."
+  ],
+  "credenziali": [
+    { "titolo": "Formazione", "voci": ["Interior Design — Politecnico di Milano (laurea triennale)", "Horeca Design Indoor & Outdoor — POLI.design", "3ds Max — IED Milano (2025)"] },
+    { "titolo": "Esperienza", "voci": ["Dal 2021 — studio dell'Arch. Piergiorgio de Flumeri", "Progettazione tecnica, rendering, rilievi, pratiche edilizie", "Residenziale per privati · concept horeca in portfolio"] },
+    { "titolo": "Profilo", "voci": ["Basata a Monza — lavora su Monza e Milano", "Cittadinanza italiana e svizzera", "Dal concept alla documentazione finale e ai render"] }
+  ],
+  "portfolioHref": "#",
+  "budgetEyebrow": "Servizio",
+  "budgetTitolo": "Progetta con un *budget.*",
+  "budgetLead": "Quando ci chiedi una consulenza o una progettazione, puoi indicare un budget: da lì non ti lasciamo soli. Oltre a disegnare lo spazio, ti guidiamo negli acquisti — diventiamo il tuo *buyer* e facciamo rendere ogni euro.",
+  "budgetPunti": [
+    { "k": "Consulenza all'acquisto", "t": "Dopo il progetto, ti accompagniamo nella scelta di ogni complemento d'arredo: cosa comprare, dove e perché." },
+    { "k": "Buyer dedicato", "t": "Facciamo da buyer per te. Selezioniamo i pezzi giusti, trattiamo con fornitori e artigiani, gestiamo tempi e forniture." },
+    { "k": "Budget ottimizzato", "t": "Lavoriamo dentro il budget che ci dai, ottimizzando il risparmio: la stessa qualità, spendendo meglio." }
+  ],
+  "budgetCta": "Richiedi una consulenza →",
+  "ctaEyebrow": "Lavoriamo insieme",
+  "ctaTitolo": "Raccontami il *tuo* spazio.",
+  "ctaLabel": "Richiedi una consulenza →"
+}

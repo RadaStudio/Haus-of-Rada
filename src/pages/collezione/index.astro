@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CollectionItemCard from '../../components/CollectionItemCard.astro';
 import { getCollection } from 'astro:content';
+import pagina from '../../content/pagine/collezione.json';
+import { accent } from '../../lib/text';
 
 const pezzi = (await getCollection('collezione')).sort(
   (a, b) => a.data.ordine - b.data.ordine
@@ -14,14 +16,14 @@ const pezzi = (await getCollection('collezione')).sort(
 >
   <div class="page">
     <div class="page-head">
-      <p class="eyebrow">Collezione — Curatela</p>
-      <h1>Cose belle, scelte<br />una a una.</h1>
-      <p>Oggetti d’arredo e opere d’arte che scegliamo con lo stesso sguardo dei progetti: materiali veri, storie vere, una luce che li rende necessari. Oggi da ammirare — <em>presto da portare a casa.</em></p>
+      <p class="eyebrow">{pagina.eyebrow}</p>
+      <h1>{pagina.titolo.split('\n').map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h1>
+      <p set:html={accent(pagina.intro)}></p>
     </div>
 
     <div class="note-bar">
-      <span class="eyebrow">La collezione apre presto</span>
-      <span class="note">Ogni pezzo sarà acquistabile a breve. Per informazioni o prenotazioni, <a href="/contatti">scrivici</a>.</span>
+      <span class="eyebrow">{pagina.noteEyebrow}</span>
+      <span class="note">{pagina.noteTesto} <a href="/contatti">scrivici</a>.</span>
     </div>
 
     <div class="grid">
@@ -53,7 +55,7 @@ const pezzi = (await getCollection('collezione')).sort(
     margin: .16em 0 .3em;
   }
   .page-head p { max-width: 54ch; color: var(--ink-soft); }
-  .page-head em { font-style: italic; color: var(--green); }
+  .page-head p i { font-style: italic; color: var(--green); }
 
   .note-bar {
     max-width: 1300px;

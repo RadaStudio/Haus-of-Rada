@@ -1,12 +1,13 @@
 ---
 // Footer globale (thin bar). Scuro --green-deep, firma + città.
+import impostazioni from '../content/pagine/impostazioni.json';
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <a class="wordmark" href="/" aria-label="Haus of Rada — home"><b>Haus</b><i>of</i><b>Rada</b></a>
-  <span class="tag">© {year} Haus of Rada — Luce sulle cose belle.</span>
-  <span class="city">Monza · Milano</span>
+  <span class="tag">© {year} Haus of Rada — {impostazioni.footerTagline}</span>
+  <span class="city">{impostazioni.citta}</span>
 </footer>
 
 <style>

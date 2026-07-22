@@ -1,25 +1,29 @@
 ---
 // Sezione contatti scura con la firma di Marianna + form.
 // Prima versione senza backend: invio via mailto (poi migrabile a Formspree).
+import contatti from '../content/pagine/contatti.json';
+import impostazioni from '../content/pagine/impostazioni.json';
+import { accent } from '../lib/text';
+
 interface Props {
   id?: string;
 }
 const { id = 'contatti' } = Astro.props;
-const email = 'marianna@haus-of-rada.com';
+const email = impostazioni.email;
 ---
 <section class="contact" id={id}>
   <div class="contact-grid">
     <div>
-      <p class="eyebrow">Lo Studio</p>
-      <h2>Raccontiamoci il <i>prossimo</i> bel progetto.</h2>
+      <p class="eyebrow">{contatti.bloccoEyebrow}</p>
+      <h2 set:html={accent(contatti.bloccoTitolo)}></h2>
       <div class="signature">
-        <p>Haus of Rada è lo spazio creativo di Marianna Radaelli: progettazione d’interni, curatela e racconto del design. Ogni progetto porta uno stile, un gusto e un garbo che restano.</p>
-        <div class="name">Marianna Radaelli</div>
-        <div class="role">Fondatrice · Interior &amp; Design</div>
+        <p>{contatti.bloccoFirma}</p>
+        <div class="name">{contatti.bloccoNome}</div>
+        <div class="role">{contatti.bloccoRuolo}</div>
         <div class="socials">
-          <a href="https://instagram.com/" rel="me noopener" target="_blank">Instagram</a>
-          <a href="https://pinterest.com/" rel="me noopener" target="_blank">Pinterest</a>
-          <a href="https://linkedin.com/" rel="me noopener" target="_blank">LinkedIn</a>
+          <a href={impostazioni.instagram} rel="me noopener" target="_blank">Instagram</a>
+          <a href={impostazioni.pinterest} rel="me noopener" target="_blank">Pinterest</a>
+          <a href={impostazioni.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
           <a href={`mailto:${email}`}>{email}</a>
         </div>
       </div>
@@ -48,10 +52,7 @@ const email = 'marianna@haus-of-rada.com';
         <label for="c-msg">Il tuo progetto</label>
         <textarea id="c-msg" name="progetto" placeholder="Raccontaci in due righe" required></textarea>
       </div>
-      <p class="buyer-note">
-        Su richiesta offriamo anche <strong>consulenza all'acquisto</strong>: ti guidiamo nella scelta
-        dei complementi d'arredo in linea con il tuo budget, facendo da <em>buyer</em> e ottimizzando la spesa.
-      </p>
+      <p class="buyer-note" set:html={accent(contatti.buyerNota)}></p>
       <button class="btn" type="submit">Invia la richiesta →</button>
     </form>
   </div>
@@ -134,8 +135,7 @@ const email = 'marianna@haus-of-rada.com';
     padding-left: 16px;
     margin-top: 4px;
   }
-  .buyer-note strong { color: var(--glow); font-weight: 500; }
-  .buyer-note em { font-style: italic; }
+  .buyer-note i { color: var(--glow); font-style: italic; }
   .form .btn { align-self: flex-start; margin-top: 8px; color: var(--ivory); }
 
   @media (max-width: 860px) {

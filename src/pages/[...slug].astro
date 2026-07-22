@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Blocco from '../components/Blocco.astro';
+import { getCollection } from 'astro:content';
+
+// Pagine libere costruite a blocchi da Keystatic (collection `pagineLibere`).
+// getStaticPaths genera SOLO gli slug esistenti: nessun conflitto con le rotte fisse.
+export async function getStaticPaths() {
+  const pagine = await getCollection('pagineLibere');
+  return pagine.map((pagina) => ({ params: { slug: pagina.id }, props: { pagina } }));
+}
+
+const { pagina } = Astro.props;
+const p = pagina.data;
+---
+<BaseLayout title={`${p.titolo} — Haus of Rada`} description={p.descrizione ?? p.titolo}>
+  <div class="pagina-libera">
+    {p.blocchi.map((b) => <Blocco discriminant={b.discriminant} value={b.value} />)}
+  </div>
+</BaseLayout>
+
+<style>
+  .pagina-libera { padding-top: var(--nav-h); }
+</style>

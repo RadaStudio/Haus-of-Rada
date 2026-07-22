@@ -4,42 +4,19 @@ import HeroRadiance from '../components/HeroRadiance.astro';
 import WorldIndex from '../components/WorldIndex.astro';
 import JournalCard from '../components/JournalCard.astro';
 import Contact from '../components/Contact.astro';
+import home from '../content/pagine/home.json';
+import { accentDuo } from '../lib/text';
 
-const journalPreview = [
-  {
-    stamp: 'Guide',
-    title: 'Copenhagen, in otto luoghi di design da vivere',
-    place: 'Copenhagen, Danimarca',
-    frame: 'guida',
-    tone: 'warm' as const,
-    href: '/journal/copenhagen-design-guide',
-  },
-  {
-    stamp: 'Anatomia',
-    title: 'Perché questo hotel funziona: luce, pietra e un solo colore',
-    place: 'Anatomia di un posto',
-    frame: 'hotel',
-    tone: 'green' as const,
-    href: '/journal/anatomia-hotel-un-colore',
-  },
-  {
-    stamp: 'Oggetti',
-    title: 'La lampada che ha cambiato il modo di illuminare una stanza',
-    place: 'La storia dell’oggetto',
-    frame: 'oggetto',
-    tone: 'amber' as const,
-    href: '/journal/lampada-che-ha-cambiato',
-  },
-];
+const journalPreview = home.journalPreview;
 ---
 <BaseLayout transparentNav={true}>
   <HeroRadiance />
 
   <!-- MANIFESTO -->
   <section class="manifesto reveal">
-    <p class="eyebrow">Il nostro sguardo</p>
-    <p class="statement">Prendiamo le cose belle e le facciamo <span class="hl">risplendere</span>: una casa, un hotel, una lampada, un <span class="amberhl">racconto</span>.</p>
-    <p class="note">Haus of Rada nasce dall’idea che il bello non vada solo costruito, ma anche capito e raccontato. Uniamo la progettazione d’interni — residenziale e horeca — alla cura di oggetti e opere, e al racconto dei luoghi che ci ispirano. Un unico gusto, molte forme.</p>
+    <p class="eyebrow">{home.manifestoEyebrow}</p>
+    <p class="statement" set:html={accentDuo(home.manifestoStatement)}></p>
+    <p class="note">{home.manifestoNota}</p>
   </section>
 
   <!-- INDICE DEI MONDI -->
@@ -48,21 +25,30 @@ const journalPreview = [
   <!-- PROGETTO IN EVIDENZA (banda cinematografica scura) -->
   <section class="featured reveal">
     <div class="featured-inner">
-      <p class="eyebrow">Progetto in evidenza</p>
-      <h3>Villa in fiore,<br />alle porte di Monza</h3>
-      <p>Una residenza dove la luce guida ogni scelta: materiali caldi, verde che entra dalle vetrate, un dettaglio sartoriale in ogni stanza.</p>
-      <a class="btn" href="/progetti/villa-in-fiore">Esplora il progetto →</a>
+      <p class="eyebrow">{home.featuredEyebrow}</p>
+      <h3>{home.featuredTitolo.split('\n').map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h3>
+      <p>{home.featuredTesto}</p>
+      <a class="btn" href={home.featuredHref}>{home.featuredCta}</a>
     </div>
   </section>
 
   <!-- PREVIEW JOURNAL -->
   <section class="journal">
     <div class="journal-head">
-      <h2>Dal Journal — storie, guide, tecnicismi</h2>
-      <a class="btn btn--dark" href="/journal">Tutto il Journal →</a>
+      <h2>{home.journalHeading}</h2>
+      <a class="btn btn--dark" href="/journal">{home.journalCta}</a>
     </div>
     <div class="journal-grid">
-      {journalPreview.map((j) => <JournalCard {...j} />)}
+      {journalPreview.map((j) => (
+        <JournalCard
+          stamp={j.stamp}
+          title={j.title}
+          place={j.place}
+          frame={j.frame}
+          tone={j.tono as 'warm' | 'green' | 'amber' | 'stone'}
+          href={j.href}
+        />
+      ))}
     </div>
   </section>
 

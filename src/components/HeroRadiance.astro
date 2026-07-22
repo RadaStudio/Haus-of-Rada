@@ -1,6 +1,7 @@
 ---
 // Hero della Home. Elemento firma "radiance": raggi SVG che respirano dietro
 // il wordmark + orizzonte botanico morbido dal basso. Unico momento "bold".
+import home from '../content/pagine/home.json';
 ---
 <header class="hero" id="top">
   <svg class="rays" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -27,13 +28,13 @@
   </svg>
 
   <div class="hero-inner">
-    <p class="eyebrow eyebrow--gold">Atelier di interni &nbsp;·&nbsp; Collezione &nbsp;·&nbsp; Journal</p>
+    <p class="eyebrow eyebrow--gold">{home.heroEyebrow}</p>
     <h1>
       <span class="l1"><span>Haus <em class="of">of</em></span></span>
       <span class="l2"><span>Rada</span></span>
     </h1>
-    <p class="tagline">Luce sulle cose belle.</p>
-    <p class="sub">Progettiamo spazi, curiamo oggetti e raccontiamo il design del mondo — con competenza, gusto e un certo garbo.</p>
+    <p class="tagline">{home.heroTagline}</p>
+    <p class="sub">{home.heroSub}</p>
   </div>
 
   <div class="scrollcue"><span class="bar"></span> Scorri</div>

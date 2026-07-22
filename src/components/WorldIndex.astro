@@ -1,53 +1,26 @@
 ---
 // Indice dei mondi: le tre voci di rivista (numero, titolo, immagine, freccia hover).
 import Placeholder from './Placeholder.astro';
+import home from '../content/pagine/home.json';
 
-const worlds = [
-  {
-    idx: '01 — Progetti',
-    title: 'Interni',
-    href: '/progetti',
-    sub: 'Spazi progettati per essere vissuti e ricordati. Case e appartamenti, e il mondo dell’ospitalità.',
-    tags: ['Residenziale', 'Horeca · hotel, ristoranti, bar, spa'],
-    frame: 'progetto d’interni',
-    tone: 'warm' as const,
-  },
-  {
-    idx: '02 — Curatela',
-    title: 'Collezione',
-    href: '/collezione',
-    sub: 'Oggetti d’arredo e opere d’arte scelti uno a uno. Oggi da ammirare, presto da portare a casa.',
-    tags: ['Arredo', 'Arte', 'Prossimamente in vendita'],
-    frame: 'oggetto / opera',
-    tone: 'amber' as const,
-  },
-  {
-    idx: '03 — Racconto',
-    title: 'Journal',
-    href: '/journal',
-    sub: 'Travel, luoghi unici, storie e tecnicismi. Il perché una cosa è bella — non solo che lo è.',
-    tags: ['Guide', 'Storie di design', 'Lifestyle'],
-    frame: 'luogo / lifestyle',
-    tone: 'green' as const,
-  },
-];
+const worlds = home.worlds;
 ---
 <section class="worlds" id="mondi">
   <div class="worlds-head">
-    <h2>I mondi di Haus of Rada</h2>
-    <span class="eyebrow">Indice — 03</span>
+    <h2>{home.worldsTitolo}</h2>
+    <span class="eyebrow">{home.worldsIndice}</span>
   </div>
 
   {worlds.map((w) => (
     <a class="world reveal" href={w.href}>
       <span class="idx">{w.idx}</span>
       <div>
-        <div class="wtitle">{w.title}</div>
+        <div class="wtitle">{w.titolo}</div>
         <p class="wsub">{w.sub}</p>
         <div class="tags">{w.tags.map((t) => <span>{t}</span>)}</div>
       </div>
       <div class="world-media">
-        <Placeholder label={w.frame} tone={w.tone} class="world-frame" />
+        <Placeholder label={w.frame} tone={w.tono as 'warm' | 'green' | 'amber' | 'stone'} class="world-frame" />
         <span class="arrow" aria-hidden="true">→</span>
       </div>
     </a>

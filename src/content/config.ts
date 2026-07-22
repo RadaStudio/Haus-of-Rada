@@ -72,4 +72,22 @@ const journal = defineCollection({
   }),
 });
 
-export const collections = { progetti, collezione, journal };
+// Pagine libere — page-builder a blocchi (Keystatic collection `pagine`).
+// Blocchi serializzati come { discriminant, value } da fields.blocks.
+const pagineLibere = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/pagine-libere' }),
+  schema: z.object({
+    titolo: z.string(),
+    descrizione: z.string().optional(),
+    blocchi: z
+      .array(
+        z.object({
+          discriminant: z.string(),
+          value: z.record(z.any()).nullable().optional(),
+        })
+      )
+      .default([]),
+  }),
+});
+
+export const collections = { progetti, collezione, journal, pagineLibere };

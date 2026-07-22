@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Contact from '../components/Contact.astro';
+import contatti from '../content/pagine/contatti.json';
+import impostazioni from '../content/pagine/impostazioni.json';
 
-const email = 'marianna@haus-of-rada.com';
+const email = impostazioni.email;
 ---
 <BaseLayout
   title="Contatti — Haus of Rada"
@@ -11,9 +13,9 @@ const email = 'marianna@haus-of-rada.com';
 >
   <div class="page">
     <div class="page-head">
-      <p class="eyebrow">Contatti</p>
-      <h1>Parliamo del<br />tuo progetto.</h1>
-      <p>Un'idea, una stanza da ripensare, un luogo da immaginare. Raccontacelo: rispondiamo a ogni richiesta, e su richiesta ti seguiamo anche negli acquisti, dentro il tuo budget.</p>
+      <p class="eyebrow">{contatti.pageEyebrow}</p>
+      <h1>{contatti.pageTitolo.split('\n').map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h1>
+      <p>{contatti.pageIntro}</p>
 
       <div class="quick">
         <div>
@@ -22,14 +24,14 @@ const email = 'marianna@haus-of-rada.com';
         </div>
         <div>
           <span class="k">Dove</span>
-          <span>Monza · Milano</span>
+          <span>{impostazioni.citta}</span>
         </div>
         <div>
           <span class="k">Social</span>
           <span class="links">
-            <a href="https://instagram.com/" rel="me noopener" target="_blank">Instagram</a>
-            <a href="https://pinterest.com/" rel="me noopener" target="_blank">Pinterest</a>
-            <a href="https://linkedin.com/" rel="me noopener" target="_blank">LinkedIn</a>
+            <a href={impostazioni.instagram} rel="me noopener" target="_blank">Instagram</a>
+            <a href={impostazioni.pinterest} rel="me noopener" target="_blank">Pinterest</a>
+            <a href={impostazioni.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
           </span>
         </div>
       </div>

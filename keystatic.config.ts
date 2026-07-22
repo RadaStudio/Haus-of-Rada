@@ -1,4 +1,4 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 // Keystatic — CMS git-based in local mode.
 // Rispecchia esattamente gli schema Zod di src/content/config.ts.
@@ -22,6 +22,167 @@ export default config({
   },
   ui: {
     brand: { name: 'Haus of Rada' },
+  },
+  singletons: {
+    // ------------------------------------------------------------------ HOME
+    home: singleton({
+      label: 'Home',
+      path: 'src/content/pagine/home',
+      format: { data: 'json' },
+      schema: {
+        heroEyebrow: fields.text({ label: 'Hero — eyebrow' }),
+        heroTagline: fields.text({ label: 'Hero — tagline' }),
+        heroSub: fields.text({ label: 'Hero — sottotitolo', multiline: true }),
+        manifestoEyebrow: fields.text({ label: 'Manifesto — eyebrow' }),
+        manifestoStatement: fields.text({ label: 'Manifesto — frase (*verde*, ~ambra~)', multiline: true }),
+        manifestoNota: fields.text({ label: 'Manifesto — nota', multiline: true }),
+        worldsTitolo: fields.text({ label: 'Mondi — titolo' }),
+        worldsIndice: fields.text({ label: 'Mondi — etichetta indice' }),
+        worlds: fields.array(
+          fields.object({
+            idx: fields.text({ label: 'Numero (es. 01 — Progetti)' }),
+            titolo: fields.text({ label: 'Titolo' }),
+            href: fields.text({ label: 'Link' }),
+            sub: fields.text({ label: 'Descrizione', multiline: true }),
+            tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tag', itemLabel: (p) => p.value }),
+            frame: fields.text({ label: 'Etichetta segnaposto' }),
+            tono: fields.select({ label: 'Tono', options: [...TONO_OPTIONS], defaultValue: 'warm' }),
+          }),
+          { label: 'Mondi', itemLabel: (p) => p.fields.titolo.value }
+        ),
+        featuredEyebrow: fields.text({ label: 'In evidenza — eyebrow' }),
+        featuredTitolo: fields.text({ label: 'In evidenza — titolo', multiline: true }),
+        featuredTesto: fields.text({ label: 'In evidenza — testo', multiline: true }),
+        featuredCta: fields.text({ label: 'In evidenza — CTA' }),
+        featuredHref: fields.text({ label: 'In evidenza — link' }),
+        journalHeading: fields.text({ label: 'Journal — titolo sezione' }),
+        journalCta: fields.text({ label: 'Journal — CTA' }),
+        journalPreview: fields.array(
+          fields.object({
+            stamp: fields.text({ label: 'Stamp (serie)' }),
+            title: fields.text({ label: 'Titolo' }),
+            place: fields.text({ label: 'Luogo / sottotitolo' }),
+            frame: fields.text({ label: 'Etichetta segnaposto' }),
+            tono: fields.select({ label: 'Tono', options: [...TONO_OPTIONS], defaultValue: 'warm' }),
+            href: fields.text({ label: 'Link articolo' }),
+          }),
+          { label: 'Journal — anteprima (3 card)', itemLabel: (p) => p.fields.title.value }
+        ),
+      },
+    }),
+
+    // ------------------------------------------------------------------ INTERNI (pagina Progetti)
+    interni: singleton({
+      label: 'Interni (pagina)',
+      path: 'src/content/pagine/interni',
+      format: { data: 'json' },
+      schema: {
+        eyebrow: fields.text({ label: 'Eyebrow' }),
+        titolo: fields.text({ label: 'Titolo' }),
+        intro: fields.text({ label: 'Intro', multiline: true }),
+        budgetK: fields.text({ label: 'Budget band — etichetta' }),
+        budgetTesto: fields.text({ label: 'Budget band — testo', multiline: true }),
+        budgetHref: fields.text({ label: 'Budget band — link' }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ STUDIO
+    studio: singleton({
+      label: 'Studio (pagina)',
+      path: 'src/content/pagine/studio',
+      format: { data: 'json' },
+      schema: {
+        pageEyebrow: fields.text({ label: 'Eyebrow' }),
+        pageTitolo: fields.text({ label: 'Titolo', multiline: true }),
+        portraitLabel: fields.text({ label: 'Etichetta ritratto' }),
+        bioLead: fields.text({ label: 'Bio — lead (*accento*)', multiline: true }),
+        bioParagrafi: fields.array(fields.text({ label: 'Paragrafo', multiline: true }), {
+          label: 'Bio — paragrafi',
+          itemLabel: (p) => (p.value ?? '').slice(0, 50),
+        }),
+        credenziali: fields.array(
+          fields.object({
+            titolo: fields.text({ label: 'Colonna' }),
+            voci: fields.array(fields.text({ label: 'Voce' }), { label: 'Voci', itemLabel: (p) => p.value }),
+          }),
+          { label: 'Credenziali', itemLabel: (p) => p.fields.titolo.value }
+        ),
+        portfolioHref: fields.text({ label: 'Link portfolio' }),
+        budgetEyebrow: fields.text({ label: 'Budget — eyebrow' }),
+        budgetTitolo: fields.text({ label: 'Budget — titolo (*accento*)' }),
+        budgetLead: fields.text({ label: 'Budget — lead (*accento*)', multiline: true }),
+        budgetPunti: fields.array(
+          fields.object({
+            k: fields.text({ label: 'Titolo' }),
+            t: fields.text({ label: 'Testo', multiline: true }),
+          }),
+          { label: 'Budget — punti', itemLabel: (p) => p.fields.k.value }
+        ),
+        budgetCta: fields.text({ label: 'Budget — CTA' }),
+        ctaEyebrow: fields.text({ label: 'CTA finale — eyebrow' }),
+        ctaTitolo: fields.text({ label: 'CTA finale — titolo (*accento*)' }),
+        ctaLabel: fields.text({ label: 'CTA finale — bottone' }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ CONTATTI
+    contatti: singleton({
+      label: 'Contatti (pagina)',
+      path: 'src/content/pagine/contatti',
+      format: { data: 'json' },
+      schema: {
+        pageEyebrow: fields.text({ label: 'Eyebrow' }),
+        pageTitolo: fields.text({ label: 'Titolo', multiline: true }),
+        pageIntro: fields.text({ label: 'Intro', multiline: true }),
+        bloccoEyebrow: fields.text({ label: 'Blocco — eyebrow' }),
+        bloccoTitolo: fields.text({ label: 'Blocco — titolo (*accento*)' }),
+        bloccoFirma: fields.text({ label: 'Blocco — firma', multiline: true }),
+        bloccoNome: fields.text({ label: 'Blocco — nome' }),
+        bloccoRuolo: fields.text({ label: 'Blocco — ruolo' }),
+        buyerNota: fields.text({ label: 'Nota buyer (*accento*)', multiline: true }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ COLLEZIONE (pagina)
+    collezionePagina: singleton({
+      label: 'Collezione (pagina)',
+      path: 'src/content/pagine/collezione',
+      format: { data: 'json' },
+      schema: {
+        eyebrow: fields.text({ label: 'Eyebrow' }),
+        titolo: fields.text({ label: 'Titolo', multiline: true }),
+        intro: fields.text({ label: 'Intro (*accento*)', multiline: true }),
+        noteEyebrow: fields.text({ label: 'Note bar — eyebrow' }),
+        noteTesto: fields.text({ label: 'Note bar — testo', multiline: true }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ JOURNAL (pagina)
+    journalPagina: singleton({
+      label: 'Journal (pagina)',
+      path: 'src/content/pagine/journalPagina',
+      format: { data: 'json' },
+      schema: {
+        eyebrow: fields.text({ label: 'Eyebrow' }),
+        titolo: fields.text({ label: 'Titolo', multiline: true }),
+        intro: fields.text({ label: 'Intro', multiline: true }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ IMPOSTAZIONI (sito)
+    impostazioni: singleton({
+      label: 'Impostazioni sito',
+      path: 'src/content/pagine/impostazioni',
+      format: { data: 'json' },
+      schema: {
+        email: fields.text({ label: 'Email di contatto' }),
+        citta: fields.text({ label: 'Città (footer)' }),
+        footerTagline: fields.text({ label: 'Footer — tagline' }),
+        instagram: fields.text({ label: 'Instagram URL' }),
+        pinterest: fields.text({ label: 'Pinterest URL' }),
+        linkedin: fields.text({ label: 'LinkedIn URL' }),
+      },
+    }),
   },
   collections: {
     // ------------------------------------------------------------------ PROGETTI
@@ -164,6 +325,66 @@ export default config({
         }),
         ordine: fields.integer({ label: 'Ordine', defaultValue: 99 }),
         body: fields.markdoc({ label: 'Note (corpo)' }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ PAGINE (page-builder)
+    pagine: collection({
+      label: 'Pagine (nuove)',
+      slugField: 'titolo',
+      path: 'src/content/pagine-libere/*',
+      format: { data: 'yaml' },
+      schema: {
+        titolo: fields.slug({ name: { label: 'Titolo pagina' } }),
+        descrizione: fields.text({ label: 'Descrizione (SEO)' }),
+        blocchi: fields.blocks(
+          {
+            testo: {
+              label: 'Testo',
+              schema: fields.object({
+                eyebrow: fields.text({ label: 'Eyebrow' }),
+                titolo: fields.text({ label: 'Titolo' }),
+                corpo: fields.text({ label: 'Corpo', multiline: true }),
+              }),
+            },
+            banda: {
+              label: 'Banda scura',
+              schema: fields.object({
+                eyebrow: fields.text({ label: 'Eyebrow' }),
+                titolo: fields.text({ label: 'Titolo (*accento*)' }),
+                testo: fields.text({ label: 'Testo', multiline: true }),
+                ctaLabel: fields.text({ label: 'CTA — etichetta' }),
+                ctaHref: fields.text({ label: 'CTA — link' }),
+              }),
+            },
+            immagineTesto: {
+              label: 'Immagine + testo',
+              schema: fields.object({
+                titolo: fields.text({ label: 'Titolo' }),
+                testo: fields.text({ label: 'Testo', multiline: true }),
+                immagine: fields.image({ label: 'Immagine', directory: 'public/img/pagine', publicPath: '/img/pagine/' }),
+                etichetta: fields.text({ label: 'Etichetta segnaposto (se senza immagine)' }),
+                lato: fields.select({
+                  label: 'Lato immagine',
+                  options: [
+                    { label: 'Sinistra', value: 'sinistra' },
+                    { label: 'Destra', value: 'destra' },
+                  ],
+                  defaultValue: 'sinistra',
+                }),
+              }),
+            },
+            cta: {
+              label: 'CTA',
+              schema: fields.object({
+                titolo: fields.text({ label: 'Titolo (*accento*)' }),
+                ctaLabel: fields.text({ label: 'Bottone' }),
+                ctaHref: fields.text({ label: 'Link' }),
+              }),
+            },
+          },
+          { label: 'Blocchi' }
+        ),
       },
     }),
   },

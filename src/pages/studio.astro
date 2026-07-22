@@ -2,41 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import BudgetService from '../components/BudgetService.astro';
+import studio from '../content/pagine/studio.json';
+import impostazioni from '../content/pagine/impostazioni.json';
+import { accent } from '../lib/text';
 
-const email = 'marianna@haus-of-rada.com';
-
-const credenziali = [
-  {
-    titolo: 'Formazione',
-    voci: [
-      'Interior Design — Politecnico di Milano (laurea triennale)',
-      'Horeca Design Indoor & Outdoor — POLI.design',
-      '3ds Max — IED Milano (2025)',
-    ],
-  },
-  {
-    titolo: 'Esperienza',
-    voci: [
-      'Dal 2021 — studio dell’Arch. Piergiorgio de Flumeri',
-      'Progettazione tecnica, rendering, rilievi, pratiche edilizie',
-      'Residenziale per privati · concept horeca in portfolio',
-    ],
-  },
-  {
-    titolo: 'Profilo',
-    voci: [
-      'Basata a Monza — lavora su Monza e Milano',
-      'Cittadinanza italiana e svizzera',
-      'Dal concept alla documentazione finale e ai render',
-    ],
-  },
-];
-
+const email = impostazioni.email;
+const credenziali = studio.credenziali;
 const social = [
-  { label: 'Instagram', href: 'https://instagram.com/' },
-  { label: 'Pinterest', href: 'https://pinterest.com/' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/' },
-  { label: 'Portfolio', href: '#' },
+  { label: 'Instagram', href: impostazioni.instagram },
+  { label: 'Pinterest', href: impostazioni.pinterest },
+  { label: 'LinkedIn', href: impostazioni.linkedin },
+  { label: 'Portfolio', href: studio.portfolioHref },
 ];
 ---
 <BaseLayout
@@ -46,17 +22,15 @@ const social = [
 >
   <div class="page">
     <div class="page-head">
-      <p class="eyebrow">Lo Studio · La firma</p>
-      <h1>Marianna<br />Radaelli.</h1>
+      <p class="eyebrow">{studio.pageEyebrow}</p>
+      <h1>{studio.pageTitolo.split('\n').map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h1>
     </div>
 
     <section class="intro">
-      <Placeholder label="ritratto di Marianna" tone="warm" ratio="4/5" class="portrait" />
+      <Placeholder label={studio.portraitLabel} tone="warm" ratio="4/5" class="portrait" />
       <div class="bio">
-        <p class="lead">Interior designer. Progetta interni tra <strong>Monza e Milano</strong> — residenziale e ospitalità — con uno sguardo che mette la luce e i materiali veri prima di tutto.</p>
-        <p>Laurea triennale in Interior Design al <strong>Politecnico di Milano</strong>, specializzazione in <strong>Horeca Design Indoor &amp; Outdoor</strong> alla POLI.design e un approfondimento in <strong>3ds Max</strong> allo IED Milano (2025).</p>
-        <p>Dal 2021 collabora con lo studio dell’<strong>Arch. Piergiorgio de Flumeri</strong>, dove segue progettazione tecnica, rendering, rilievi e pratiche edilizie. Firma progetti residenziali per privati — nuovo e ristrutturazione — dal concept alla documentazione finale, e sviluppa concept per l’ospitalità.</p>
-        <p>Cittadinanza italiana e svizzera. Dal 2026 vive e lavora a Monza.</p>
+        <p class="lead" set:html={accent(studio.bioLead)}></p>
+        {studio.bioParagrafi.map((p) => <p>{p}</p>)}
 
         <div class="socials">
           {social.map((s) => (
@@ -81,9 +55,9 @@ const social = [
 
   <section class="studio-cta">
     <div class="reveal">
-      <p class="eyebrow">Lavoriamo insieme</p>
-      <h2>Raccontami il <i>tuo</i> spazio.</h2>
-      <a class="btn" href="/contatti">Richiedi una consulenza →</a>
+      <p class="eyebrow">{studio.ctaEyebrow}</p>
+      <h2 set:html={accent(studio.ctaTitolo)}></h2>
+      <a class="btn" href="/contatti">{studio.ctaLabel}</a>
     </div>
   </section>
 </BaseLayout>
@@ -119,7 +93,7 @@ const social = [
   }
   .bio p { color: var(--ink-soft); margin-bottom: 18px; max-width: 60ch; }
   .bio strong { color: var(--ink); font-weight: 500; }
-  .bio .lead strong { color: var(--green); }
+  .bio .lead i { font-style: italic; color: var(--green); }
 
   .socials { display: flex; gap: 22px; margin-top: 28px; flex-wrap: wrap; }
   .socials a {

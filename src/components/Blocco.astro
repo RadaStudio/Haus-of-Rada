@@ -1,0 +1,129 @@
+---
+// Renderizza un blocco del page-builder (Keystatic fields.blocks).
+// Ogni blocco è { discriminant, value }. Design coerente col resto del sito.
+import Placeholder from './Placeholder.astro';
+import { accent } from '../lib/text';
+
+interface Props {
+  discriminant: string;
+  value?: Record<string, any> | null;
+}
+const { discriminant, value } = Astro.props;
+const v = value ?? {};
+const imgSrc = typeof v.immagine === 'string' && v.immagine
+  ? (v.immagine.startsWith('/') ? v.immagine : `/img/pagine/${v.immagine}`)
+  : null;
+---
+{discriminant === 'testo' && (
+  <section class="blk blk-testo reveal">
+    <div class="wrap">
+      {v.eyebrow && <p class="eyebrow">{v.eyebrow}</p>}
+      {v.titolo && <h2>{v.titolo}</h2>}
+      {v.corpo && v.corpo.split('\n').filter(Boolean).map((par: string) => <p class="corpo">{par}</p>)}
+    </div>
+  </section>
+)}
+
+{discriminant === 'banda' && (
+  <section class="blk blk-banda reveal">
+    <div class="banda-inner">
+      {v.eyebrow && <p class="eyebrow">{v.eyebrow}</p>}
+      {v.titolo && <h2 set:html={accent(v.titolo)}></h2>}
+      {v.testo && <p>{v.testo}</p>}
+      {v.ctaLabel && <a class="btn" href={v.ctaHref || '#'}>{v.ctaLabel}</a>}
+    </div>
+  </section>
+)}
+
+{discriminant === 'immagineTesto' && (
+  <section class:list={['blk blk-imgtesto reveal', v.lato === 'destra' && 'is-right']}>
+    {imgSrc
+      ? <img class="blk-img" src={imgSrc} alt={v.titolo ?? ''} loading="lazy" />
+      : <Placeholder label={v.etichetta || v.titolo || 'immagine'} tone="stone" ratio="4/3" class="blk-img" />}
+    <div class="blk-txt">
+      {v.titolo && <h2>{v.titolo}</h2>}
+      {v.testo && v.testo.split('\n').filter(Boolean).map((par: string) => <p>{par}</p>)}
+    </div>
+  </section>
+)}
+
+{discriminant === 'cta' && (
+  <section class="blk blk-cta reveal">
+    {v.titolo && <h2 set:html={accent(v.titolo)}></h2>}
+    {v.ctaLabel && <a class="btn btn--dark" href={v.ctaHref || '#'}>{v.ctaLabel}</a>}
+  </section>
+)}
+
+<style>
+  .blk { padding: clamp(50px, 9vh, 110px) var(--pad); }
+
+  .blk-testo .wrap { max-width: 760px; margin: 0 auto; }
+  .blk-testo .eyebrow { color: var(--amber); margin-bottom: 20px; }
+  .blk-testo h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 4.4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 24px;
+  }
+  .blk-testo .corpo { color: var(--ink-soft); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.75; margin-bottom: 1.2em; }
+
+  .blk-banda {
+    background:
+      radial-gradient(80% 120% at 20% 0%, rgba(244, 217, 160, .22), rgba(244, 217, 160, 0) 55%),
+      linear-gradient(180deg, #3a4a3c 0%, #29352b 60%, #1d2620 100%);
+    color: var(--ivory);
+  }
+  .blk-banda .banda-inner { max-width: 820px; }
+  .blk-banda .eyebrow { color: var(--glow); }
+  .blk-banda h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 5.5vw, 74px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: .2em 0 .4em;
+  }
+  .blk-banda h2 :global(i) { font-style: italic; color: var(--glow); }
+  .blk-banda p { max-width: 46ch; color: rgba(245, 239, 226, .8); margin-bottom: 26px; }
+  .blk-banda .btn { color: var(--ivory); }
+
+  .blk-imgtesto {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(30px, 6vw, 80px);
+    align-items: center;
+  }
+  .blk-imgtesto.is-right { direction: rtl; }
+  .blk-imgtesto.is-right > * { direction: ltr; }
+  .blk-imgtesto :global(.blk-img) { width: 100%; border: 1px solid var(--line); }
+  .blk-imgtesto h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 3.6vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -.01em;
+    margin-bottom: 20px;
+  }
+  .blk-imgtesto .blk-txt p { color: var(--ink-soft); line-height: 1.7; margin-bottom: 1em; }
+
+  .blk-cta { text-align: center; background: var(--green-deep); color: var(--ivory); }
+  .blk-cta h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(30px, 6vw, 70px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin-bottom: .5em;
+  }
+  .blk-cta h2 :global(i) { font-style: italic; color: var(--glow); }
+  .blk-cta .btn { color: var(--ivory); }
+
+  @media (max-width: 860px) {
+    .blk-imgtesto { grid-template-columns: 1fr; }
+    .blk-imgtesto.is-right { direction: ltr; }
+  }
+</style>
