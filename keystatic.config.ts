@@ -13,7 +13,13 @@ const TONO_OPTIONS = [
 ] as const;
 
 export default config({
-  storage: { kind: 'local' },
+  // GitHub storage mode: gli edit da /keystatic diventano commit sul repo
+  // (poi Vercel ridispiega). Richiede una GitHub App + le env var KEYSTATIC_*.
+  // Per l'editing locale senza auth si può temporaneamente tornare a { kind: 'local' }.
+  storage: {
+    kind: 'github',
+    repo: { owner: 'RadaStudio', name: 'Haus-of-Rada' },
+  },
   ui: {
     brand: { name: 'Haus of Rada' },
   },
