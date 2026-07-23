@@ -3,25 +3,25 @@
   "pageTitolo": "Marianna\nRadaelli.",
   "portraitLabel": "ritratto di Marianna",
   "portrait": "/img/studio/portrait.jpg",
-  "bioLead": "Sono un' Interior designer e progetto interni tra Monza, Lecco e Milano. Posso realizzare progetti sia in ambito residenziale che HoReCa, la mia vera, grande passione.",
+  "bioLead": "Interior designer, progetto interni tra Monza, Lecco e Milano. Residenziale e horeca — quest'ultimo la mia vera passione.",
   "bioParagrafi": [
-    "Ho una Laurea triennale in Interior Design al Politecnico di Milano (2021), specializzazione in Horeca Design Indoor & Outdoor alla POLI.design e ho seguito dei corsi per renderizzazione di 3ds Max allo IED Milano",
-    "Dal 2021 collaboro con lo studio dell'Architetto de Flumeri, occupandomi di progettazione tecnica, rendering, rilievi e pratiche edilizie. Ho seguito progetti residenziali per privati — nuovo e ristrutturazione — lavorando dal concept alla realizzazione finale.",
-    "Sono Lecchese di nascita con orgini Svizzere, dal 2026 vivo a Monza.\nSono spesso divisa tra Milano, Monza, Lecco e la Valchiavenna"
+    "Laurea in Interior Design al Politecnico di Milano (2021), specializzazione in Horeca Design alla POLI.design e un corso di rendering con 3ds Max allo IED Milano.",
+    "Dal 2021 collaboro con lo studio dell'Arch. de Flumeri: progettazione tecnica, rendering, rilievi e pratiche edilizie. Seguo progetti residenziali per privati — nuovo e ristrutturazione — dal concept alla realizzazione.",
+    "Lecchese di nascita, con origini svizzere. Dal 2026 vivo a Monza, spesso in viaggio tra Milano, Lecco e la Valchiavenna."
   ],
   "credenziali": [],
   "portfolioHref": "#",
   "budgetEyebrow": "Servizio",
   "budgetTitolo": "Progetta con un *budget.*",
-  "budgetLead": "Quando ci chiedi una consulenza o una progettazione, puoi indicare un budget: da lì non ti lasciamo soli. Oltre a disegnare lo spazio, ti guidiamo negli acquisti — diventiamo il tuo *buyer* e facciamo rendere ogni euro.",
+  "budgetLead": "Indica un budget e non ti lascio sola: oltre a disegnare lo spazio, ti guido negli acquisti. Divento il tuo *buyer* e faccio rendere ogni euro.",
   "budgetPunti": [
     {
       "k": "Consulenza all'acquisto",
-      "t": "Dopo il progetto, ti accompagno nella scelta di ogni complemento d'arredo: cosa comprare, dove e perché."
+      "t": "Dopo il progetto ti accompagno nella scelta di ogni complemento d'arredo: cosa comprare, dove e perché."
     },
     {
-      "k": "Un Furniture Buyer Dedicato",
-      "t": "Vivo ogni giorno in mezzo a grandi negoziatori (nella vita, e nel lavoro), ho imparato anche io ad essere uno di loro seguendo i loro approcci e consigli. \n\nCerco e seleziono i migliori fornitori e prodotti al fine di poter offrire soluzioni di acquisto ai pezzi giusti, massimizzando l'acquistato nei limiti del budget del cliente.\n\nDisponibile a trattare con fornitori, gestendo tempi e forniture al fine di rendere la tua esperienza di arredo il più semplice possibile.\n\nPosso agire in autonomia direttamente con aziende, artigiani e negozi oppure seguire il cliente nell'esperienza di acquisto in negozio, come una personal shopper pronta ad offrire la propria consulenza al cliente."
+      "k": "Un buyer dedicato",
+      "t": "Cerco i fornitori e i pezzi giusti, tratto tempi e forniture, e faccio rendere ogni euro del tuo budget. Posso agire in autonomia con aziende e artigiani, o accompagnarti in negozio come una personal shopper."
     }
   ],
   "budgetCta": "Richiedi una consulenza →",

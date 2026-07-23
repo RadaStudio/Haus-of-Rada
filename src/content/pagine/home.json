@@ -1,21 +1,21 @@
 {
   "heroEyebrow": "Atelier di interni",
   "heroTagline": "Luce sulle cose belle.",
-  "heroSub": "Progetto ambienti, studio gli oggetti e racconto piccoli spazi di design dal mondo con competenza, cura e garbo.",
-  "manifestoEyebrow": "Il mio sguardo sul progetto",
-  "manifestoStatement": "Arredare non significa fare scenografie, non significa fare belle immagini per le riviste; è piuttosto creare una qualità di vita, una bellezza che nutre l'anima",
-  "manifestoNota": "Haus of Rada nasce dall'idea che il bello non vada solo costruito, ma anche cercato, vissuto e raccontato. Desidero unire la progettazione d'interni alla cura di oggetti, opere ed esperienze, sempre vicini al racconto dei luoghi e delle persone che ci ispirano. Un unico gusto, espresso molte forme.",
+  "heroSub": "Progetto ambienti, scelgo oggetti, racconto il design. Con competenza, cura e garbo.",
+  "manifestoEyebrow": "Il mio sguardo",
+  "manifestoStatement": "Arredare non è fare scenografie o belle foto per le riviste. È creare una qualità di vita, una bellezza che nutre l'anima.",
+  "manifestoNota": "Il bello non va solo costruito, ma cercato, vissuto e raccontato. Unisco la progettazione d'interni alla cura di oggetti e al racconto dei luoghi che mi ispirano. Un unico gusto, molte forme.",
   "metodo": {
     "eyebrow": "Il metodo",
     "titolo": "Un progetto è un percorso, non una consegna",
-    "testo": "Ho passato anni a guardare come sono fatti gli spazi che funzionano: case, alberghi, musei, locali, in Italia e fuori. Quello che ho imparato lì non resta nei viaggi — entra nei progetti che disegno.\nNon ho la struttura di un grande studio, e non voglio averla. Seguo poche case per volta, le seguo io dall'inizio alla fine, e spiego ogni scelta mentre la facciamo. Alla fine del percorso non hai solo una casa finita: sai perché è fatta così.",
+    "testo": "Ho passato anni a guardare gli spazi che funzionano — case, alberghi, musei, locali, in Italia e fuori. Quello che imparo lì entra nei progetti che disegno.\nSeguo poche case per volta, dall'inizio alla fine, e spiego ogni scelta mentre la facciamo. Alla fine non hai solo una casa finita: sai perché è fatta così.",
     "passi": [
       { "numero": "01", "titolo": "Si guarda", "testo": "Lo spazio, la luce, le abitudini di chi ci vive. Prima di qualsiasi disegno." },
       { "numero": "02", "titolo": "Si decide insieme", "testo": "Ogni scelta con il suo motivo e il suo costo, sul tavolo dall'inizio." },
       { "numero": "03", "titolo": "Si vede prima", "testo": "Render e tavole per capire lo spazio senza sorprese in cantiere." },
       { "numero": "04", "titolo": "Si resta", "testo": "Fino alla fine, anche nelle decisioni piccole. Sono quelle che si vedono ogni giorno." }
     ],
-    "linkTesto": "Se vuoi capire nel dettaglio come funziona, l'ho spiegato passo per passo",
+    "linkTesto": "Come lavoro, passo per passo",
     "linkLabel": "Il percorso →",
     "linkHref": "/studio#percorso"
   },
@@ -26,7 +26,7 @@
       "idx": "01 — Progetti",
       "titolo": "Interni",
       "href": "/progetti",
-      "sub": "Spazi progettati per essere vissuti e ricordati. Dalle abitazioni private all' HoReCa",
+      "sub": "Spazi pensati per essere vissuti e ricordati. Dalle case private all'horeca.",
       "tags": [
         "Residenziale",
         "Horeca · hotel, ristoranti, bar, spa"
@@ -51,7 +51,7 @@
       "idx": "03 — Racconto",
       "titolo": "Journal",
       "href": "/journal",
-      "sub": "personaggi, oggetti iconici, luoghi unici, storie e tecnicismi. Un piccolo diario all'insegna del gusto di vivere e conoscere qualcosa di nuovo che lascia il segno.",
+      "sub": "Personaggi, oggetti iconici, luoghi unici. Un diario sul gusto di vivere e scoprire cose che lasciano il segno.",
       "tags": [
         "Guide all'arredo",
         "Storie di design",
