@@ -5,7 +5,7 @@ import Placeholder from '../../components/Placeholder.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const storie = await getCollection('journal');
+  const storie = await getCollection('journal', ({ data }) => !data.bozza);
   return storie.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 

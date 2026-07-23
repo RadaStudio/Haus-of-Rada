@@ -18,7 +18,7 @@ const FILTERS = [
   ...Object.entries(SERIE).map(([key, m]) => ({ key, label: m.pill })),
 ];
 
-const storie = (await getCollection('journal')).sort(
+const storie = (await getCollection('journal', ({ data }) => !data.bozza)).sort(
   (a, b) => b.data.data.getTime() - a.data.data.getTime()
 );
 ---

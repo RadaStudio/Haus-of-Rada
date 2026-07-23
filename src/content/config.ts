@@ -71,6 +71,8 @@ const journal = defineCollection({
       )
       .default([]),
     ordine: z.number().default(99),
+    // bozza: se true l'articolo NON viene pubblicato sul sito (resta editabile in Keystatic)
+    bozza: z.boolean().default(false),
   }),
 });
 

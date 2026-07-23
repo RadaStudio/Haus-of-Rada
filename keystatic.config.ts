@@ -319,6 +319,7 @@ export default config({
       format: { data: 'yaml', contentField: 'body' },
       schema: {
         titolo: fields.slug({ name: { label: 'Titolo' } }),
+        bozza: fields.checkbox({ label: 'Bozza (non pubblicata sul sito)', defaultValue: false }),
         serie: fields.select({
           label: 'Serie',
           options: [
