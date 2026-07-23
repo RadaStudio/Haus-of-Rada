@@ -78,6 +78,9 @@ export default config({
         featuredHref: fields.text({ label: 'In evidenza — link' }),
         journalHeading: fields.text({ label: 'Journal — titolo sezione' }),
         journalCta: fields.text({ label: 'Journal — CTA' }),
+        chiusuraTitolo: fields.text({ label: 'Chiusura — titolo' }),
+        chiusuraTesto: fields.text({ label: 'Chiusura — testo', multiline: true }),
+        chiusuraCta: fields.text({ label: 'Chiusura — bottone' }),
         journalPreview: fields.array(
           fields.object({
             stamp: fields.text({ label: 'Stamp (serie)' }),
@@ -103,15 +106,12 @@ export default config({
         titolo: fields.text({ label: 'Titolo' }),
         intro: fields.text({ label: 'Intro (righe = paragrafi)', multiline: true }),
         notaFiltro: fields.text({ label: 'Nota sotto il filtro' }),
-        budgetK: fields.text({ label: 'Budget band — etichetta' }),
-        budgetTesto: fields.text({ label: 'Budget band — testo', multiline: true }),
-        budgetHref: fields.text({ label: 'Budget band — link' }),
       },
     }),
 
     // ------------------------------------------------------------------ IL PERCORSO
     percorso: singleton({
-      label: 'Il percorso (pagina)',
+      label: 'Il percorso (sezione Studio)',
       path: 'src/content/pagine/percorso',
       format: { data: 'json' },
       schema: {

@@ -18,18 +18,13 @@ const progetti = (await getCollection('progetti')).sort(
 <BaseLayout
   title="Progetti — Interni · Haus of Rada"
   description="Progettazione d'interni residenziale e horeca: case, appartamenti e luoghi dell'ospitalità. La luce prima di tutto, materiali veri, un dettaglio sartoriale in ogni ambiente."
-  activeNav="Interni"
+  activeNav="Portfolio"
 >
   <div class="page">
     <div class="page-head">
       <p class="eyebrow">{interni.eyebrow}</p>
       <h1>{interni.titolo}</h1>
       {interni.intro.split('\n').filter(Boolean).map((par) => <p>{par}</p>)}
-      <a class="budget-band" href={interni.budgetHref}>
-        <span class="bb-k">{interni.budgetK}</span>
-        {(interni as any).budgetTesto && <span class="bb-t">{(interni as any).budgetTesto}</span>}
-        <span class="bb-a" aria-hidden="true">→</span>
-      </a>
     </div>
 
     <CollectionFilter
@@ -78,30 +73,6 @@ const progetti = (await getCollection('progetti')).sort(
     margin: .16em 0 .3em;
   }
   .page-head p { max-width: 52ch; color: var(--ink-soft); }
-
-  .budget-band {
-    display: flex;
-    align-items: center;
-    gap: 16px 24px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    padding: 16px 22px;
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    max-width: 760px;
-    transition: border-color .35s var(--ease), background .35s var(--ease);
-  }
-  .budget-band:hover, .budget-band:focus-visible { border-color: var(--amber); background: var(--ivory-2); }
-  .budget-band .bb-k {
-    font-size: 11px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--amber);
-    white-space: nowrap;
-  }
-  .budget-band .bb-t { font-size: 14px; color: var(--ink-soft); flex: 1; min-width: 200px; }
-  .budget-band .bb-a { font-family: var(--serif); font-size: 20px; color: var(--green); transition: transform .35s var(--ease); }
-  .budget-band:hover .bb-a { transform: translateX(6px); }
 
   .grid {
     max-width: 1300px;

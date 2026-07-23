@@ -13,7 +13,7 @@ const p = entry.data;
 const CAT_LABEL = { residenziale: 'Residenziale', horeca: 'Horeca' };
 const heroClass = p.categoria === 'horeca' ? 'h-hor' : 'h-res';
 ---
-<BaseLayout title={`${p.titolo} — Haus of Rada`} description={p.linea} activeNav="Interni">
+<BaseLayout title={`${p.titolo} — Haus of Rada`} description={p.linea} activeNav="Portfolio">
   <article class="detail">
     <header
       class:list={['d-hero', heroClass, p.cover && 'has-photo']}

@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Placeholder from '../components/Placeholder.astro';
 import BudgetService from '../components/BudgetService.astro';
+import PercorsoSection from '../components/PercorsoSection.astro';
 import studio from '../content/pagine/studio.json';
 import impostazioni from '../content/pagine/impostazioni.json';
 import { accent } from '../lib/text';
@@ -50,6 +51,8 @@ const social = [
       ))}
     </section>
   </div>
+
+  <PercorsoSection />
 
   <BudgetService />
 

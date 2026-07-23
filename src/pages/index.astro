@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroRadiance from '../components/HeroRadiance.astro';
 import WorldIndex from '../components/WorldIndex.astro';
 import JournalCard from '../components/JournalCard.astro';
-import Contact from '../components/Contact.astro';
 import home from '../content/pagine/home.json';
 import { accentDuo } from '../lib/text';
 
@@ -86,8 +85,12 @@ const metodo = (home as any).metodo;
     </div>
   </section>
 
-  <!-- CONTATTI + FIRMA -->
-  <Contact />
+  <!-- CHIUSURA (CTA breve → Contatti) -->
+  <section class="home-chiusura reveal">
+    <h2>{(home as any).chiusuraTitolo}</h2>
+    <p>{(home as any).chiusuraTesto}</p>
+    <a class="btn" href="/contatti">{(home as any).chiusuraCta}</a>
+  </section>
 </BaseLayout>
 
 <style>
@@ -208,6 +211,24 @@ const metodo = (home as any).metodo;
     max-width: 16ch;
   }
   .journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+
+  /* ---------- CHIUSURA HOME ---------- */
+  .home-chiusura {
+    background: var(--green-deep);
+    color: var(--ivory);
+    padding: clamp(70px, 13vh, 140px) var(--pad);
+    text-align: center;
+  }
+  .home-chiusura h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(32px, 6vw, 76px);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin-bottom: .35em;
+  }
+  .home-chiusura p { color: rgba(245, 239, 226, .8); max-width: 44ch; margin: 0 auto 28px; }
+  .home-chiusura .btn { color: var(--ivory); }
 
   @media (max-width: 860px) {
     .journal-grid { grid-template-columns: 1fr; gap: 44px; }

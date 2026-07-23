@@ -1,0 +1,106 @@
+---
+// "Come lavoro / Il percorso" — sezione dentro lo Studio (già pagina a sé).
+// Legge src/content/pagine/percorso.json (singleton "Il percorso" in Keystatic).
+import percorso from '../content/pagine/percorso.json';
+---
+<section class="percorso-sec" id="percorso">
+  <div class="ps-head">
+    <p class="eyebrow eyebrow--gold">{percorso.eyebrow}</p>
+    <h2>{percorso.titolo}</h2>
+    <p class="ps-intro">{percorso.intro}</p>
+  </div>
+
+  <ol class="passi">
+    {percorso.passi.map((s) => (
+      <li class="passo reveal">
+        <div class="num">{s.numero}</div>
+        <div class="corpo">
+          <h3>{s.titolo}</h3>
+          <p class="testo">{s.testo}</p>
+          <dl class="note">
+            {s.consegno && (<><dt>Ti consegno</dt><dd>{s.consegno}</dd></>)}
+            {s.serve && (<><dt>Serve da te</dt><dd>{s.serve}</dd></>)}
+            {s.dove && (<><dt>Dove</dt><dd>{s.dove}</dd></>)}
+          </dl>
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  {percorso.notaPerimetro && <p class="perimetro reveal">{percorso.notaPerimetro}</p>}
+
+  <div class="formule reveal">
+    <h3 class="d-title">{percorso.formuleTitolo}</h3>
+    <div class="formule-grid">
+      {percorso.formule.map((f) => (
+        <div class="formula">
+          <h4>{f.formula}</h4>
+          <p class="comprende">{f.comprende}</p>
+          <p class="perchi"><span>Per chi</span> {f.perChi}</p>
+        </div>
+      ))}
+    </div>
+    <p class="prezzi">{percorso.rigaPrezzi}</p>
+  </div>
+</section>
+
+<style>
+  .percorso-sec {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: clamp(50px, 9vh, 100px) var(--pad);
+    border-top: 1px solid var(--line);
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+  .ps-head { max-width: 720px; margin-bottom: clamp(34px, 6vh, 60px); }
+  .ps-head h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 4.4vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin: .16em 0 .4em;
+  }
+  .ps-head .ps-intro { color: var(--ink-soft); font-size: clamp(16px, 1.3vw, 18px); line-height: 1.7; }
+
+  .passi { list-style: none; border-top: 1px solid var(--line); }
+  .passo {
+    display: grid;
+    grid-template-columns: minmax(70px, .4fr) 1.6fr;
+    gap: clamp(18px, 4vw, 60px);
+    padding: clamp(26px, 4.5vh, 46px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .passo .num { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(28px, 3.6vw, 46px); color: var(--amber); line-height: 1; }
+  .passo h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -.01em; margin-bottom: 12px; }
+  .passo .testo { color: var(--ink-soft); line-height: 1.7; max-width: 54ch; }
+  .passo .note { margin-top: 20px; display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; max-width: 60ch; }
+  .passo .note dt { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--green); padding-top: 3px; white-space: nowrap; }
+  .passo .note dd { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  .perimetro {
+    max-width: 66ch;
+    margin: clamp(36px, 6vh, 70px) 0 0;
+    padding-left: 18px;
+    border-left: 2px solid var(--gold);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .formule { margin-top: clamp(50px, 9vh, 100px); }
+  .d-title { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 3vw, 36px); letter-spacing: -.01em; margin-bottom: 28px; }
+  .formule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+  .formula { border-top: 1px solid var(--line); padding-top: 20px; }
+  .formula h4 { font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 2.2vw, 24px); margin-bottom: 12px; }
+  .formula .comprende { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; margin-bottom: 16px; }
+  .formula .perchi { font-size: 13.5px; color: var(--ink); }
+  .formula .perchi span { display: block; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--amber); margin-bottom: 4px; }
+  .prezzi { margin-top: 32px; font-family: var(--serif); font-style: italic; font-size: clamp(17px, 1.8vw, 22px); color: var(--green); max-width: 40ch; }
+
+  @media (max-width: 860px) {
+    .passo { grid-template-columns: 1fr; gap: 10px; }
+    .formule-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>

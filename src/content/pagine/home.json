@@ -17,7 +17,7 @@
     ],
     "linkTesto": "Se vuoi capire nel dettaglio come funziona, l'ho spiegato passo per passo",
     "linkLabel": "Il percorso →",
-    "linkHref": "/percorso"
+    "linkHref": "/studio#percorso"
   },
   "worldsTitolo": "I mondi di Haus of Rada",
   "worldsIndice": "Indice — 03",
@@ -68,6 +68,9 @@
   "featuredHref": "/progetti/villa-in-fiore",
   "journalHeading": "Dal Journal — storie, guide, tecnicismi",
   "journalCta": "Tutto il Journal →",
+  "chiusuraTitolo": "Un progetto da iniziare?",
+  "chiusuraTesto": "Racconto volentieri come lavoro, anche prima di qualsiasi impegno. Scrivimi: rispondo io.",
+  "chiusuraCta": "Scrivimi →",
   "journalPreview": [
     {
       "stamp": "Guide",
