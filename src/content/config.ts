@@ -14,6 +14,7 @@ const progetti = defineCollection({
     mq: z.string(),
     ruolo: z.string().optional(),
     linea: z.string(),
+    problema: z.string().optional(),
     concept: z.array(z.string()),
     natura: z.array(z.object({ k: z.string(), t: z.string() })),
     // tono del segnaposto fotografia finché mancano le foto reali

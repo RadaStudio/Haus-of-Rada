@@ -276,7 +276,8 @@ export default config({
         tipo: fields.text({ label: 'Tipo' }),
         mq: fields.text({ label: 'Superficie (mq)' }),
         ruolo: fields.text({ label: 'Ruolo (il mio ruolo nel progetto)' }),
-        linea: fields.text({ label: 'Linea', multiline: true }),
+        linea: fields.text({ label: 'Linea (il concept in una frase)', multiline: true }),
+        problema: fields.text({ label: 'Il problema (vincolo di partenza, 2–3 righe)', multiline: true }),
         concept: fields.array(fields.text({ label: 'Paragrafo', multiline: true }), {
           label: 'Concept',
           itemLabel: (props) => props.value?.slice(0, 60) || 'Paragrafo',
