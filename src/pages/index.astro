@@ -8,6 +8,7 @@ import home from '../content/pagine/home.json';
 import { accentDuo } from '../lib/text';
 
 const journalPreview = home.journalPreview;
+const metodo = (home as any).metodo;
 ---
 <BaseLayout transparentNav={true}>
   <HeroRadiance />
@@ -18,6 +19,33 @@ const journalPreview = home.journalPreview;
     <p class="statement" set:html={accentDuo(home.manifestoStatement)}></p>
     <p class="note">{home.manifestoNota}</p>
   </section>
+
+  <!-- METODO / IL PERCORSO -->
+  {metodo && (
+    <section class="metodo reveal">
+      <div class="metodo-head">
+        {metodo.eyebrow && <p class="eyebrow eyebrow--gold">{metodo.eyebrow}</p>}
+        <h2>{metodo.titolo}</h2>
+        {metodo.testo && metodo.testo.split('\n').filter(Boolean).map((par: string) => <p class="mtxt">{par}</p>)}
+      </div>
+      <ol class="metodo-passi">
+        {(metodo.passi ?? []).map((s: any) => (
+          <li>
+            <span class="mnum">{s.numero}</span>
+            <div>
+              <h3>{s.titolo}</h3>
+              <p>{s.testo}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      {metodo.linkLabel && (
+        <p class="metodo-link">
+          {metodo.linkTesto} <a href={metodo.linkHref || '/percorso'}>{metodo.linkLabel}</a>
+        </p>
+      )}
+    </section>
+  )}
 
   <!-- INDICE DEI MONDI -->
   <WorldIndex />
@@ -83,6 +111,44 @@ const journalPreview = home.journalPreview;
     max-width: 52ch;
     margin-top: 38px;
     line-height: 1.7;
+  }
+
+  /* ---------- METODO ---------- */
+  .metodo {
+    padding: clamp(20px, 4vh, 40px) var(--pad) clamp(70px, 12vh, 130px);
+    max-width: 1200px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+  }
+  .metodo-head { max-width: 720px; padding-top: clamp(40px, 7vh, 70px); }
+  .metodo-head h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -.02em;
+    margin: .18em 0 .5em;
+  }
+  .metodo-head .mtxt { color: var(--ink-soft); line-height: 1.7; margin-bottom: 1em; max-width: 60ch; }
+  .metodo-passi {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 3vw, 44px);
+    margin: clamp(40px, 6vh, 60px) 0 clamp(30px, 4vh, 40px);
+  }
+  .metodo-passi li { border-top: 1px solid var(--line); padding-top: 18px; }
+  .metodo-passi .mnum { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--amber); }
+  .metodo-passi h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(17px, 1.7vw, 21px); margin: 6px 0 8px; }
+  .metodo-passi p { color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+  .metodo-link { color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
+  .metodo-link a { color: var(--amber); border-bottom: 1px solid var(--amber); padding-bottom: 1px; white-space: nowrap; }
+
+  @media (max-width: 860px) {
+    .metodo-passi { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .metodo-passi { grid-template-columns: 1fr; }
   }
 
   /* ---------- FEATURED ---------- */

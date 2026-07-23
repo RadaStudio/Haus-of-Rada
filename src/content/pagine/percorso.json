@@ -1,0 +1,83 @@
+{
+  "eyebrow": "Come lavoro",
+  "titolo": "Il percorso",
+  "intro": "Progettare una casa non è scegliere un divano. È una sequenza di decisioni che vanno prese nell'ordine giusto, ognuna delle quali restringe le successive. Qui c'è come lavoro, passo per passo, così sai cosa aspettarti prima di iniziare.",
+  "passi": [
+    {
+      "numero": "01",
+      "titolo": "Una prima chiamata",
+      "testo": "Mezz'ora per capire di che spazio si tratta, cosa non funziona oggi e che budget hai in mente. Serve a decidere se ha senso proseguire.",
+      "consegno": "niente, è un confronto. Nessun costo.",
+      "serve": "",
+      "dove": ""
+    },
+    {
+      "numero": "02",
+      "titolo": "Sopralluogo e rilievo",
+      "testo": "Vengo sul posto, misuro, fotografo, guardo la luce nelle diverse ore. Parliamo di come vivi gli spazi: orari, abitudini, chi ci abita, cosa ti dà fastidio.",
+      "consegno": "le piante dello stato di fatto.",
+      "serve": "un paio d'ore e sincerità sulle abitudini reali, non su quelle ideali.",
+      "dove": "compreso entro 25 km da Monza. Più lontano lo faccio volentieri, concordando prima un contributo per la trasferta."
+    },
+    {
+      "numero": "03",
+      "titolo": "Brief e budget",
+      "testo": "Mettiamo per iscritto obiettivi, priorità e la cifra disponibile, divisa per voci. È la fase più noiosa e la più utile: un progetto senza budget dichiarato è un progetto che salta.",
+      "consegno": "un documento di brief condiviso.",
+      "serve": "",
+      "dove": ""
+    },
+    {
+      "numero": "04",
+      "titolo": "Concept e moodboard",
+      "testo": "La direzione del progetto: atmosfera, palette, materiali, riferimenti. Non è una raccolta di immagini belle — ogni riferimento è lì perché risolve qualcosa dello spazio.",
+      "consegno": "moodboard e palette materica.",
+      "serve": "dire cosa non ti piace, che è più utile di dire cosa ti piace.",
+      "dove": ""
+    },
+    {
+      "numero": "05",
+      "titolo": "Layout distributivo",
+      "testo": "Due ipotesi di distribuzione, con i pro e i contro di ciascuna spiegati. Si sceglie insieme e si affina.",
+      "consegno": "piante arredate, due ipotesi.",
+      "serve": "",
+      "dove": ""
+    },
+    {
+      "numero": "06",
+      "titolo": "Sviluppo del progetto",
+      "testo": "Prospetti, dettagli, scelta definitiva di finiture e arredi. È qui che il progetto diventa costruibile.",
+      "consegno": "tavole di progetto, abaco di finiture e arredi con indicazione dei fornitori.",
+      "serve": "",
+      "dove": ""
+    },
+    {
+      "numero": "07",
+      "titolo": "Render",
+      "testo": "Le immagini dello spazio prima che esista, per decidere guardando invece che immaginando.",
+      "consegno": "render dei principali ambienti.",
+      "serve": "",
+      "dove": ""
+    },
+    {
+      "numero": "08",
+      "titolo": "Accompagnamento",
+      "testo": "La fase che di solito manca. Ti seguo negli acquisti, nel rapporto con fornitori e imprese, e nelle decisioni piccole che arrivano in corso d'opera.",
+      "consegno": "presenza, fino alla fine.",
+      "serve": "",
+      "dove": ""
+    }
+  ],
+  "notaPerimetro": "Se il progetto richiede pratiche edilizie, le predispongo e le seguo; la firma è di un tecnico abilitato con cui collaboro. Lo stesso vale per strutture, impianti ed esecuzione dei lavori: coordino, non li eseguo.",
+  "formuleTitolo": "Le tre formule",
+  "formule": [
+    { "formula": "Consulenza", "comprende": "Sopralluogo + una sessione + una restituzione sintetica con indicazioni operative", "perChi": "Chi ha bisogno di sbloccare due o tre decisioni" },
+    { "formula": "Progetto d'interni", "comprende": "Fasi 02 → 07: dal rilievo ai render", "perChi": "Chi ristruttura o arreda da zero" },
+    { "formula": "Progetto e accompagnamento", "comprende": "Tutto, fino agli acquisti e al coordinamento", "perChi": "Chi vuole delegare il percorso intero" }
+  ],
+  "rigaPrezzi": "Il preventivo arriva dopo il sopralluogo, perché prima sarebbe un numero inventato.",
+  "ctaTitolo": "Un progetto da iniziare?",
+  "ctaTesto": "Racconto volentieri come lavoro, anche prima di qualsiasi impegno. Scrivimi: rispondo io.",
+  "ctaLabel": "Parliamone →",
+  "ctaHref": "/contatti"
+}

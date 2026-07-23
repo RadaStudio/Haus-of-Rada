@@ -8,10 +8,11 @@ interface Props {
   luogo: string;
   anno: string;
   linea: string;
+  ruolo?: string | null;
   tono?: 'warm' | 'green' | 'amber' | 'stone';
   cover?: string | null;
 }
-const { slug, titolo, categoria, luogo, anno, linea, tono = 'stone', cover } = Astro.props;
+const { slug, titolo, categoria, luogo, anno, linea, ruolo, tono = 'stone', cover } = Astro.props;
 const CAT_LABEL = { residenziale: 'Residenziale', horeca: 'Horeca' };
 const hasCover = typeof cover === 'string' && cover.trim();
 ---
@@ -27,6 +28,7 @@ const hasCover = typeof cover === 'string' && cover.trim();
     <span class="place">{luogo} · {anno}</span>
   </div>
   <p class="line">{linea}</p>
+  {ruolo && <p class="ruolo"><span>Ruolo</span> {ruolo}</p>}
   <span class="explore">Esplora il progetto <span aria-hidden="true">→</span></span>
 </a>
 
@@ -76,6 +78,8 @@ const hasCover = typeof cover === 'string' && cover.trim();
   }
   .place { font-size: 12.5px; color: var(--ink-soft); letter-spacing: .04em; white-space: nowrap; }
   .line { margin-top: 8px; color: var(--ink-soft); font-size: 14.5px; max-width: 44ch; }
+  .ruolo { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
+  .ruolo span { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); margin-right: 8px; }
   .explore {
     margin-top: 14px;
     font-size: 11.5px;

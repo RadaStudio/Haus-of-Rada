@@ -12,6 +12,7 @@ const progetti = defineCollection({
     anno: z.string(),
     tipo: z.string(),
     mq: z.string(),
+    ruolo: z.string().optional(),
     linea: z.string(),
     concept: z.array(z.string()),
     natura: z.array(z.object({ k: z.string(), t: z.string() })),

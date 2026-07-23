@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import percorso from '../content/pagine/percorso.json';
+---
+<BaseLayout
+  title="Il percorso — Haus of Rada"
+  description="Come lavoro, passo per passo: dalla prima chiamata al render, fino all'accompagnamento negli acquisti. Così sai cosa aspettarti prima di iniziare."
+  activeNav="Il percorso"
+>
+  <div class="page">
+    <div class="page-head">
+      <p class="eyebrow">{percorso.eyebrow}</p>
+      <h1>{percorso.titolo}</h1>
+      <p class="intro">{percorso.intro}</p>
+    </div>
+
+    <ol class="passi">
+      {percorso.passi.map((s) => (
+        <li class="passo reveal">
+          <div class="num">{s.numero}</div>
+          <div class="corpo">
+            <h2>{s.titolo}</h2>
+            <p class="testo">{s.testo}</p>
+            <dl class="note">
+              {s.consegno && (<><dt>Ti consegno</dt><dd>{s.consegno}</dd></>)}
+              {s.serve && (<><dt>Serve da te</dt><dd>{s.serve}</dd></>)}
+              {s.dove && (<><dt>Dove</dt><dd>{s.dove}</dd></>)}
+            </dl>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <p class="perimetro reveal">{percorso.notaPerimetro}</p>
+
+    <section class="formule reveal">
+      <h2 class="d-title">{percorso.formuleTitolo}</h2>
+      <div class="formule-grid">
+        {percorso.formule.map((f) => (
+          <div class="formula">
+            <h3>{f.formula}</h3>
+            <p class="comprende">{f.comprende}</p>
+            <p class="perchi"><span>Per chi</span> {f.perChi}</p>
+          </div>
+        ))}
+      </div>
+      <p class="prezzi">{percorso.rigaPrezzi}</p>
+    </section>
+
+    <section class="cta reveal">
+      <h2>{percorso.ctaTitolo}</h2>
+      <p>{percorso.ctaTesto}</p>
+      <a class="btn" href={percorso.ctaHref}>{percorso.ctaLabel}</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .page { padding: calc(var(--nav-h) + 5vh) var(--pad) clamp(80px, 12vh, 140px); max-width: 1100px; margin: 0 auto; }
+  .page-head { max-width: 720px; margin-bottom: clamp(40px, 7vh, 80px); }
+  .page-head .eyebrow { color: var(--amber); }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 110px);
+    line-height: .94;
+    letter-spacing: -.02em;
+    margin: .16em 0 .4em;
+  }
+  .page-head .intro { color: var(--ink-soft); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.7; }
+
+  /* ---------- passi (timeline) ---------- */
+  .passi { list-style: none; border-top: 1px solid var(--line); }
+  .passo {
+    display: grid;
+    grid-template-columns: minmax(80px, .5fr) 1.5fr;
+    gap: clamp(20px, 5vw, 70px);
+    padding: clamp(30px, 5vh, 54px) 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .passo .num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(30px, 4vw, 52px);
+    color: var(--amber);
+    line-height: 1;
+  }
+  .passo h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(22px, 3vw, 34px);
+    letter-spacing: -.01em;
+    margin-bottom: 14px;
+  }
+  .passo .testo { color: var(--ink-soft); line-height: 1.7; max-width: 54ch; }
+  .passo .note {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 18px;
+    max-width: 60ch;
+  }
+  .passo .note dt {
+    font-size: 10.5px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--green);
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+  .passo .note dd { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  .perimetro {
+    max-width: 66ch;
+    margin: clamp(40px, 7vh, 80px) 0 0;
+    padding-left: 18px;
+    border-left: 2px solid var(--gold);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* ---------- formule ---------- */
+  .formule { margin-top: clamp(60px, 10vh, 110px); }
+  .d-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(24px, 3.4vw, 40px);
+    letter-spacing: -.01em;
+    margin-bottom: 30px;
+  }
+  .formule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+  .formula { border-top: 1px solid var(--line); padding-top: 20px; }
+  .formula h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(19px, 2.2vw, 25px);
+    margin-bottom: 12px;
+  }
+  .formula .comprende { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; margin-bottom: 16px; }
+  .formula .perchi { font-size: 13.5px; color: var(--ink); }
+  .formula .perchi span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .prezzi { margin-top: 34px; font-family: var(--serif); font-style: italic; font-size: clamp(17px, 1.8vw, 22px); color: var(--green); max-width: 40ch; }
+
+  /* ---------- cta ---------- */
+  .cta {
+    margin-top: clamp(70px, 12vh, 130px);
+    background: var(--green-deep);
+    color: var(--ivory);
+    border-radius: 2px;
+    padding: clamp(44px, 7vw, 80px);
+    text-align: center;
+  }
+  .cta h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 5vw, 58px);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin-bottom: .4em;
+  }
+  .cta p { color: rgba(245, 239, 226, .8); max-width: 44ch; margin: 0 auto 28px; }
+  .cta .btn { color: var(--ivory); }
+
+  @media (max-width: 860px) {
+    .passo { grid-template-columns: 1fr; gap: 12px; }
+    .passo .num { font-size: 30px; }
+    .formule-grid { grid-template-columns: 1fr; gap: 30px; }
+  }
+</style>

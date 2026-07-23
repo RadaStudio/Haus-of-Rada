@@ -1,5 +1,11 @@
 {
   "eyebrow": "Journal",
   "titolo": "Storie, guide,\ntecnicismi.",
-  "intro": "Travel, luoghi unici, oggetti iconici e lifestyle. Raccontiamo il perché una cosa è bella — non solo che lo è. Ogni articolo è anche un post: uno alla volta, senza fretta."
+  "intro": "Quattro serie che tornano. Storie di luoghi, oggetti e case, raccontate cercando sempre la stessa cosa: perché funzionano.",
+  "serie": [
+    { "nome": "Guide", "descrizione": "Una città alla volta, solo i posti che valgono la deviazione." },
+    { "nome": "Anatomia di un posto", "descrizione": "Un luogo smontato pezzo per pezzo: luce, materiali, proporzioni." },
+    { "nome": "Storia dell'oggetto", "descrizione": "Un pezzo iconico, chi l'ha disegnato e perché è ancora qui." },
+    { "nome": "Lifestyle", "descrizione": "Come si vive davvero una casa ben progettata." }
+  ]
 }

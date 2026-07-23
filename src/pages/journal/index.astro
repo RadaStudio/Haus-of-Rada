@@ -34,6 +34,17 @@ const storie = (await getCollection('journal')).sort(
       <p>{pagina.intro}</p>
     </div>
 
+    {(pagina as any).serie && (
+      <div class="serie-legend">
+        {(pagina as any).serie.map((s: any) => (
+          <div class="serie-item">
+            <span class="serie-nome">{s.nome}</span>
+            <span class="serie-desc">{s.descrizione}</span>
+          </div>
+        ))}
+      </div>
+    )}
+
     <CollectionFilter
       client:load
       gridId="journal-grid"
@@ -79,6 +90,31 @@ const storie = (await getCollection('journal')).sort(
     margin: .16em 0 .3em;
   }
   .page-head p { max-width: 52ch; color: var(--ink-soft); }
+
+  .serie-legend {
+    max-width: 1300px;
+    margin: 0 auto clamp(30px, 5vh, 48px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(18px, 2.5vw, 36px);
+    padding-bottom: clamp(28px, 4vh, 40px);
+    border-bottom: 1px solid var(--line);
+  }
+  .serie-item { border-top: 1px solid var(--line); padding-top: 14px; }
+  .serie-nome {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.6vw, 18px);
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .serie-desc { font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+  @media (max-width: 860px) {
+    .serie-legend { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 520px) {
+    .serie-legend { grid-template-columns: 1fr; }
+  }
 
   .journal-grid {
     max-width: 1300px;

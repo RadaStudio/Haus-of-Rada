@@ -35,6 +35,10 @@ const email = impostazioni.email;
           </span>
         </div>
       </div>
+
+      {(contatti as any).notaSopralluoghi && (
+        <p class="nota-sopralluoghi">{(contatti as any).notaSopralluoghi}</p>
+      )}
     </div>
   </div>
 
@@ -43,6 +47,16 @@ const email = impostazioni.email;
 
 <style>
   .page { padding: calc(var(--nav-h) + 5vh) var(--pad) clamp(40px, 7vh, 80px); max-width: 1300px; margin: 0 auto; }
+  .nota-sopralluoghi {
+    margin-top: clamp(24px, 4vh, 40px);
+    max-width: 62ch;
+    padding-left: 18px;
+    border-left: 2px solid var(--gold);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
   .page-head .eyebrow { color: var(--amber); }
   .page-head h1 {
     font-family: var(--serif);

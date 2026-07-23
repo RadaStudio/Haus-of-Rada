@@ -39,6 +39,20 @@ const email = impostazioni.email;
         <input id="c-email" name="email" type="email" autocomplete="email" placeholder="La tua email" required />
       </div>
       <div class="field">
+        <label for="c-dove">Dove si trova lo spazio?</label>
+        <input id="c-dove" name="dove_spazio" type="text" placeholder="Città o zona" />
+      </div>
+      <div class="field">
+        <label for="c-tipo">Di cosa si tratta?</label>
+        <select id="c-tipo" name="tipo_richiesta">
+          <option value="">Scegli…</option>
+          <option value="Casa">Casa</option>
+          <option value="Locale / Horeca">Locale / Horeca</option>
+          <option value="Collaborazione">Collaborazione</option>
+          <option value="Altro">Altro</option>
+        </select>
+      </div>
+      <div class="field">
         <label for="c-budget">Budget indicativo</label>
         <select id="c-budget" name="budget">
           <option value="">Preferisco non indicarlo</option>

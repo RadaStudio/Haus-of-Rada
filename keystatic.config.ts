@@ -36,6 +36,25 @@ export default config({
         manifestoEyebrow: fields.text({ label: 'Manifesto — eyebrow' }),
         manifestoStatement: fields.text({ label: 'Manifesto — frase (*verde*, ~ambra~)', multiline: true }),
         manifestoNota: fields.text({ label: 'Manifesto — nota', multiline: true }),
+        metodo: fields.object(
+          {
+            eyebrow: fields.text({ label: 'Eyebrow' }),
+            titolo: fields.text({ label: 'Titolo' }),
+            testo: fields.text({ label: 'Testo (righe = paragrafi)', multiline: true }),
+            passi: fields.array(
+              fields.object({
+                numero: fields.text({ label: 'Numero' }),
+                titolo: fields.text({ label: 'Titolo' }),
+                testo: fields.text({ label: 'Testo', multiline: true }),
+              }),
+              { label: 'Passi (4)', itemLabel: (p) => `${p.fields.numero.value} · ${p.fields.titolo.value}` }
+            ),
+            linkTesto: fields.text({ label: 'Link — testo' }),
+            linkLabel: fields.text({ label: 'Link — etichetta' }),
+            linkHref: fields.text({ label: 'Link — destinazione' }),
+          },
+          { label: 'Blocco "il metodo"' }
+        ),
         worldsTitolo: fields.text({ label: 'Mondi — titolo' }),
         worldsIndice: fields.text({ label: 'Mondi — etichetta indice' }),
         worlds: fields.array(
@@ -82,10 +101,49 @@ export default config({
       schema: {
         eyebrow: fields.text({ label: 'Eyebrow' }),
         titolo: fields.text({ label: 'Titolo' }),
-        intro: fields.text({ label: 'Intro', multiline: true }),
+        intro: fields.text({ label: 'Intro (righe = paragrafi)', multiline: true }),
+        notaFiltro: fields.text({ label: 'Nota sotto il filtro' }),
         budgetK: fields.text({ label: 'Budget band — etichetta' }),
         budgetTesto: fields.text({ label: 'Budget band — testo', multiline: true }),
         budgetHref: fields.text({ label: 'Budget band — link' }),
+      },
+    }),
+
+    // ------------------------------------------------------------------ IL PERCORSO
+    percorso: singleton({
+      label: 'Il percorso (pagina)',
+      path: 'src/content/pagine/percorso',
+      format: { data: 'json' },
+      schema: {
+        eyebrow: fields.text({ label: 'Eyebrow' }),
+        titolo: fields.text({ label: 'Titolo' }),
+        intro: fields.text({ label: 'Intro', multiline: true }),
+        passi: fields.array(
+          fields.object({
+            numero: fields.text({ label: 'Numero (es. 01)' }),
+            titolo: fields.text({ label: 'Titolo' }),
+            testo: fields.text({ label: 'Testo', multiline: true }),
+            consegno: fields.text({ label: 'Ti consegno' }),
+            serve: fields.text({ label: 'Serve da te' }),
+            dove: fields.text({ label: 'Dove', multiline: true }),
+          }),
+          { label: 'Passi', itemLabel: (p) => `${p.fields.numero.value} · ${p.fields.titolo.value}` }
+        ),
+        notaPerimetro: fields.text({ label: 'Nota sul perimetro', multiline: true }),
+        formuleTitolo: fields.text({ label: 'Formule — titolo' }),
+        formule: fields.array(
+          fields.object({
+            formula: fields.text({ label: 'Formula' }),
+            comprende: fields.text({ label: 'Cosa comprende', multiline: true }),
+            perChi: fields.text({ label: 'Per chi', multiline: true }),
+          }),
+          { label: 'Formule', itemLabel: (p) => p.fields.formula.value }
+        ),
+        rigaPrezzi: fields.text({ label: 'Riga prezzi', multiline: true }),
+        ctaTitolo: fields.text({ label: 'CTA — titolo' }),
+        ctaTesto: fields.text({ label: 'CTA — testo', multiline: true }),
+        ctaLabel: fields.text({ label: 'CTA — bottone' }),
+        ctaHref: fields.text({ label: 'CTA — link' }),
       },
     }),
 
@@ -144,6 +202,7 @@ export default config({
         bloccoNome: fields.text({ label: 'Blocco — nome' }),
         bloccoRuolo: fields.text({ label: 'Blocco — ruolo' }),
         buyerNota: fields.text({ label: 'Nota buyer (*accento*)', multiline: true }),
+        notaSopralluoghi: fields.text({ label: 'Nota sopralluoghi (25 km)', multiline: true }),
       },
     }),
 
@@ -170,6 +229,13 @@ export default config({
         eyebrow: fields.text({ label: 'Eyebrow' }),
         titolo: fields.text({ label: 'Titolo', multiline: true }),
         intro: fields.text({ label: 'Intro', multiline: true }),
+        serie: fields.array(
+          fields.object({
+            nome: fields.text({ label: 'Nome serie' }),
+            descrizione: fields.text({ label: 'Descrizione', multiline: true }),
+          }),
+          { label: 'Le serie', itemLabel: (p) => p.fields.nome.value }
+        ),
       },
     }),
 
@@ -209,6 +275,7 @@ export default config({
         anno: fields.text({ label: 'Anno' }),
         tipo: fields.text({ label: 'Tipo' }),
         mq: fields.text({ label: 'Superficie (mq)' }),
+        ruolo: fields.text({ label: 'Ruolo (il mio ruolo nel progetto)' }),
         linea: fields.text({ label: 'Linea', multiline: true }),
         concept: fields.array(fields.text({ label: 'Paragrafo', multiline: true }), {
           label: 'Concept',

@@ -24,10 +24,10 @@ const progetti = (await getCollection('progetti')).sort(
     <div class="page-head">
       <p class="eyebrow">{interni.eyebrow}</p>
       <h1>{interni.titolo}</h1>
-      <p>{interni.intro}</p>
+      {interni.intro.split('\n').filter(Boolean).map((par) => <p>{par}</p>)}
       <a class="budget-band" href={interni.budgetHref}>
         <span class="bb-k">{interni.budgetK}</span>
-        <span class="bb-t">{interni.budgetTesto}</span>
+        {(interni as any).budgetTesto && <span class="bb-t">{(interni as any).budgetTesto}</span>}
         <span class="bb-a" aria-hidden="true">→</span>
       </a>
     </div>
@@ -43,6 +43,8 @@ const progetti = (await getCollection('progetti')).sort(
       label="Filtra i progetti per categoria"
     />
 
+    {(interni as any).notaFiltro && <p class="filtro-nota">{(interni as any).notaFiltro}</p>}
+
     <div class="grid" id="progetti-grid">
       {progetti.map((p) => (
         <ProjectCard
@@ -53,6 +55,7 @@ const progetti = (await getCollection('progetti')).sort(
           anno={p.data.anno}
           linea={p.data.linea}
           cover={p.data.cover}
+          ruolo={p.data.ruolo}
           tono={p.data.tono}
         />
       ))}
@@ -63,6 +66,8 @@ const progetti = (await getCollection('progetti')).sort(
 <style>
   .page { padding: calc(var(--nav-h) + 5vh) var(--pad) 0; }
   .page-head { max-width: 1300px; margin: 0 auto clamp(30px, 5vh, 54px); }
+  .page-head p + p { margin-top: 14px; }
+  .filtro-nota { max-width: 1300px; margin: 16px auto 0; font-size: 13px; color: var(--ink-soft); font-style: italic; }
   .page-head .eyebrow { color: var(--amber); }
   .page-head h1 {
     font-family: var(--serif);
