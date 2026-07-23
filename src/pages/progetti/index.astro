@@ -52,6 +52,7 @@ const progetti = (await getCollection('progetti')).sort(
           luogo={p.data.luogo}
           anno={p.data.anno}
           linea={p.data.linea}
+          cover={p.data.cover}
           tono={p.data.tono}
         />
       ))}

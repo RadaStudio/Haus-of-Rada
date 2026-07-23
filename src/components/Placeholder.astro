@@ -1,16 +1,33 @@
 ---
-// Segnaposto fotografia: cornice + etichetta [ fotografia: … ].
-// Regge i layout finché mancano le foto reali (convenzione /img/...).
+// Segnaposto fotografia: mostra la foto reale se `src` è presente (caricata da
+// Keystatic, che salva il percorso pubblico completo, es. /img/…), altrimenti
+// la cornice + etichetta [ fotografia: … ] che regge i layout.
 interface Props {
   label: string;
+  src?: string | null;
+  alt?: string;
   tone?: 'warm' | 'green' | 'amber' | 'stone' | 'neutral';
   ratio?: string;      // es. "3/4", "5/4", "16/10"
   class?: string;
 }
-const { label, tone = 'neutral', ratio, class: className } = Astro.props;
+const { label, src, alt, tone = 'neutral', ratio, class: className } = Astro.props;
 const toneClass = tone === 'neutral' ? '' : `frame--${tone}`;
 const style = ratio ? `aspect-ratio:${ratio}` : undefined;
+const img = typeof src === 'string' && src.trim() ? src : null;
 ---
-<div class:list={['frame', toneClass, className]} style={style} aria-hidden="true">
-  <span>[ fotografia: {label} ]</span>
-</div>
+{img ? (
+  <img class:list={['frame-img', className]} src={img} alt={alt ?? label} style={style} loading="lazy" />
+) : (
+  <div class:list={['frame', toneClass, className]} style={style} aria-hidden="true">
+    <span>[ fotografia: {label} ]</span>
+  </div>
+)}
+
+<style>
+  .frame-img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+  }
+</style>

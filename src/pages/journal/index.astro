@@ -55,6 +55,7 @@ const storie = (await getCollection('journal')).sort(
             title={s.data.titolo}
             place={s.data.luogo}
             frame={m.frame}
+            image={s.data.cover}
             tone={s.data.tono}
             ratio="4/3"
             href={`/journal/${s.id}`}

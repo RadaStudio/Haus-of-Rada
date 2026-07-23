@@ -20,7 +20,7 @@ const worlds = home.worlds;
         <div class="tags">{w.tags.map((t) => <span>{t}</span>)}</div>
       </div>
       <div class="world-media">
-        <Placeholder label={w.frame} tone={w.tono as 'warm' | 'green' | 'amber' | 'stone'} class="world-frame" />
+        <Placeholder label={w.frame} src={(w as any).immagine} alt={w.titolo} tone={w.tono as 'warm' | 'green' | 'amber' | 'stone'} class="world-frame" />
         <span class="arrow" aria-hidden="true">→</span>
       </div>
     </a>

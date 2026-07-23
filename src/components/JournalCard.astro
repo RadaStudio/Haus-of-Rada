@@ -12,11 +12,12 @@ interface Props {
   href?: string;
   serie?: string;     // per il filtro dell'indice (data-serie)
   ratio?: string;     // proporzione del segnaposto
+  image?: string | null;
 }
-const { stamp, title, place, frame, tone = 'warm', href = '/journal', serie, ratio = '3/4' } = Astro.props;
+const { stamp, title, place, frame, tone = 'warm', href = '/journal', serie, ratio = '3/4', image } = Astro.props;
 ---
 <a class="story reveal" href={href} data-serie={serie}>
-  <Placeholder label={frame} tone={tone} ratio={ratio} class="story-frame" />
+  <Placeholder label={frame} src={image} alt={title} tone={tone} ratio={ratio} class="story-frame" />
   <EditorialStamp label={stamp} />
   <h4>{title}</h4>
   <p class="place">{place}</p>

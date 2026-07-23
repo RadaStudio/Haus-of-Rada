@@ -10,14 +10,18 @@ interface Props {
   anno?: string;
   storia: string;
   tono?: 'warm' | 'green' | 'amber' | 'stone';
+  cover?: string | null;
 }
-const { nome, categoria, autore, provenienza, anno, storia, tono = 'stone' } = Astro.props;
+const { nome, categoria, autore, provenienza, anno, storia, tono = 'stone', cover } = Astro.props;
 const catLabel = categoria === 'arte' ? 'Arte' : 'Arredo';
+const hasCover = typeof cover === 'string' && cover.trim();
 ---
 <article class="item reveal">
-  <div class:list={['thumb', `frame--${tono}`]}>
+  <div class:list={['thumb', !hasCover && `frame--${tono}`]}>
     <span class="soon">Prossimamente in vendita</span>
-    <span class="ph">[ fotografia: {nome} ]</span>
+    {hasCover
+      ? <img class="thumb-img" src={cover} alt={nome} loading="lazy" />
+      : <span class="ph">[ fotografia: {nome} ]</span>}
   </div>
   <p class="cat">{catLabel} &nbsp;·&nbsp; {provenienza}</p>
   <h3>{nome}</h3>
@@ -37,7 +41,8 @@ const catLabel = categoria === 'arte' ? 'Arte' : 'Arredo';
     justify-content: center;
     transition: transform .6s var(--ease);
   }
-  .thumb::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--line); pointer-events: none; }
+  .thumb::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--line); pointer-events: none; z-index: 1; }
+  .thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .item:hover .thumb { transform: scale(.985); }
   .thumb .ph {
     font-size: 11px;

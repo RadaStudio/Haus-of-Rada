@@ -15,7 +15,12 @@ const heroClass = p.categoria === 'horeca' ? 'h-hor' : 'h-res';
 ---
 <BaseLayout title={`${p.titolo} — Haus of Rada`} description={p.linea} activeNav="Interni">
   <article class="detail">
-    <header class:list={['d-hero', heroClass]}>
+    <header
+      class:list={['d-hero', heroClass, p.cover && 'has-photo']}
+      style={p.cover
+        ? `background-image: linear-gradient(180deg, rgba(20,20,16,.3), rgba(20,20,16,.72)), url(${p.cover}); background-size: cover; background-position: center;`
+        : undefined}
+    >
       <div class="d-hero-inner">
         <p class="eyebrow">{CAT_LABEL[p.categoria]} · {p.tipo}</p>
         <h1>{p.titolo}</h1>
@@ -69,6 +74,7 @@ const heroClass = p.categoria === 'horeca' ? 'h-hor' : 'h-res';
     color: var(--ivory);
     overflow: hidden;
   }
+  .d-hero.has-photo::before { content: none; }
   .d-hero::before {
     content: "[ fotografia a tutto schermo del progetto ]";
     position: absolute;

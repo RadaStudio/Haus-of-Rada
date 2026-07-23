@@ -46,6 +46,7 @@ export default config({
             sub: fields.text({ label: 'Descrizione', multiline: true }),
             tags: fields.array(fields.text({ label: 'Tag' }), { label: 'Tag', itemLabel: (p) => p.value }),
             frame: fields.text({ label: 'Etichetta segnaposto' }),
+            immagine: fields.image({ label: 'Immagine', directory: 'public/img/home', publicPath: '/img/home/' }),
             tono: fields.select({ label: 'Tono', options: [...TONO_OPTIONS], defaultValue: 'warm' }),
           }),
           { label: 'Mondi', itemLabel: (p) => p.fields.titolo.value }
@@ -53,6 +54,7 @@ export default config({
         featuredEyebrow: fields.text({ label: 'In evidenza — eyebrow' }),
         featuredTitolo: fields.text({ label: 'In evidenza — titolo', multiline: true }),
         featuredTesto: fields.text({ label: 'In evidenza — testo', multiline: true }),
+        featuredImmagine: fields.image({ label: 'In evidenza — foto (banda)', directory: 'public/img/home', publicPath: '/img/home/' }),
         featuredCta: fields.text({ label: 'In evidenza — CTA' }),
         featuredHref: fields.text({ label: 'In evidenza — link' }),
         journalHeading: fields.text({ label: 'Journal — titolo sezione' }),
@@ -63,6 +65,7 @@ export default config({
             title: fields.text({ label: 'Titolo' }),
             place: fields.text({ label: 'Luogo / sottotitolo' }),
             frame: fields.text({ label: 'Etichetta segnaposto' }),
+            immagine: fields.image({ label: 'Immagine', directory: 'public/img/home', publicPath: '/img/home/' }),
             tono: fields.select({ label: 'Tono', options: [...TONO_OPTIONS], defaultValue: 'warm' }),
             href: fields.text({ label: 'Link articolo' }),
           }),
@@ -94,7 +97,8 @@ export default config({
       schema: {
         pageEyebrow: fields.text({ label: 'Eyebrow' }),
         pageTitolo: fields.text({ label: 'Titolo', multiline: true }),
-        portraitLabel: fields.text({ label: 'Etichetta ritratto' }),
+        portraitLabel: fields.text({ label: 'Etichetta ritratto (segnaposto)' }),
+        portrait: fields.image({ label: 'Ritratto', directory: 'public/img/studio', publicPath: '/img/studio/' }),
         bioLead: fields.text({ label: 'Bio — lead (*accento*)', multiline: true }),
         bioParagrafi: fields.array(fields.text({ label: 'Paragrafo', multiline: true }), {
           label: 'Bio — paragrafi',
@@ -353,6 +357,7 @@ export default config({
                 eyebrow: fields.text({ label: 'Eyebrow' }),
                 titolo: fields.text({ label: 'Titolo (*accento*)' }),
                 testo: fields.text({ label: 'Testo', multiline: true }),
+                immagine: fields.image({ label: 'Foto di sfondo (opzionale)', directory: 'public/img/pagine', publicPath: '/img/pagine/' }),
                 ctaLabel: fields.text({ label: 'CTA — etichetta' }),
                 ctaHref: fields.text({ label: 'CTA — link' }),
               }),
@@ -380,6 +385,15 @@ export default config({
                 titolo: fields.text({ label: 'Titolo (*accento*)' }),
                 ctaLabel: fields.text({ label: 'Bottone' }),
                 ctaHref: fields.text({ label: 'Link' }),
+              }),
+            },
+            galleria: {
+              label: 'Galleria',
+              schema: fields.object({
+                immagini: fields.array(
+                  fields.image({ label: 'Immagine', directory: 'public/img/pagine', publicPath: '/img/pagine/' }),
+                  { label: 'Immagini', itemLabel: (p) => p.value?.filename || 'Immagine' }
+                ),
               }),
             },
           },

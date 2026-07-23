@@ -23,7 +23,12 @@ const journalPreview = home.journalPreview;
   <WorldIndex />
 
   <!-- PROGETTO IN EVIDENZA (banda cinematografica scura) -->
-  <section class="featured reveal">
+  <section
+    class:list={['featured reveal', (home as any).featuredImmagine && 'has-photo']}
+    style={(home as any).featuredImmagine
+      ? `background-image: linear-gradient(180deg, rgba(20,26,21,.35), rgba(20,26,21,.72)), url(${(home as any).featuredImmagine}); background-size: cover; background-position: center;`
+      : undefined}
+  >
     <div class="featured-inner">
       <p class="eyebrow">{home.featuredEyebrow}</p>
       <h3>{home.featuredTitolo.split('\n').map((l, i) => (<>{i > 0 && <br />}{l}</>))}</h3>
@@ -45,6 +50,7 @@ const journalPreview = home.journalPreview;
           title={j.title}
           place={j.place}
           frame={j.frame}
+          image={(j as any).immagine}
           tone={j.tono as 'warm' | 'green' | 'amber' | 'stone'}
           href={j.href}
         />
@@ -92,6 +98,7 @@ const journalPreview = home.journalPreview;
       radial-gradient(80% 120% at 20% 0%, rgba(244, 217, 160, .28), rgba(244, 217, 160, 0) 55%),
       linear-gradient(180deg, #3a4a3c 0%, #29352b 60%, #1d2620 100%);
   }
+  .featured.has-photo::before { content: none; }
   .featured::before {
     content: "[ fotografia a tutto schermo: progetto in evidenza ]";
     position: absolute;

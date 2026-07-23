@@ -38,7 +38,7 @@ const TIPO_LABEL = { hotel: 'Hotel', oggetto: 'Oggetto', luogo: 'Luogo', esperie
       {post.estratto && <p class="lead">{post.estratto}</p>}
     </header>
 
-    <Placeholder label={m.frame} tone={post.tono} ratio="3/2" class="art-cover" />
+    <Placeholder label={m.frame} src={post.cover} alt={post.titolo} tone={post.tono} ratio="3/2" class="art-cover" />
 
     <div class="article-body reveal">
       <Content />

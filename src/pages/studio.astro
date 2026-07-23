@@ -27,7 +27,7 @@ const social = [
     </div>
 
     <section class="intro">
-      <Placeholder label={studio.portraitLabel} tone="warm" ratio="4/5" class="portrait" />
+      <Placeholder label={studio.portraitLabel} src={(studio as any).portrait} alt="Marianna Radaelli" tone="warm" ratio="4/5" class="portrait" />
       <div class="bio">
         <p class="lead" set:html={accent(studio.bioLead)}></p>
         {studio.bioParagrafi.map((p) => <p>{p}</p>)}
