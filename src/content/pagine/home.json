@@ -10,10 +10,10 @@
     "titolo": "Un progetto è un percorso, non una consegna",
     "testo": "Ho passato anni a guardare gli spazi che funzionano — case, alberghi, musei, locali, in Italia e fuori. Quello che imparo lì entra nei progetti che disegno.\nSeguo poche case per volta, dall'inizio alla fine, e spiego ogni scelta mentre la facciamo. Alla fine non hai solo una casa finita: sai perché è fatta così.",
     "passi": [
-      { "numero": "01", "titolo": "Si guarda", "testo": "Lo spazio, la luce, le abitudini di chi ci vive. Prima di qualsiasi disegno." },
-      { "numero": "02", "titolo": "Si decide insieme", "testo": "Ogni scelta con il suo motivo e il suo costo, sul tavolo dall'inizio." },
-      { "numero": "03", "titolo": "Si vede prima", "testo": "Render e tavole per capire lo spazio senza sorprese in cantiere." },
-      { "numero": "04", "titolo": "Si resta", "testo": "Fino alla fine, anche nelle decisioni piccole. Sono quelle che si vedono ogni giorno." }
+      { "titolo": "Ascolto", "testo": "Lo spazio, la luce, le abitudini di chi ci vive. Rilievo e sopralluogo, prima di ogni disegno." },
+      { "titolo": "Progetto", "testo": "Concept, materiali, layout. Ogni scelta col suo motivo e il suo budget, dall'inizio." },
+      { "titolo": "Visualizzo", "testo": "Render e tavole: vedi lo spazio prima che esista, senza sorprese in cantiere." },
+      { "titolo": "Accompagno", "testo": "Negli acquisti e in cantiere, fino all'ultima decisione. Anche le scelte piccole contano." }
     ],
     "linkTesto": "Come lavoro, passo per passo",
     "linkLabel": "Il percorso →",

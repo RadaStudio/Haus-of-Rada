@@ -43,11 +43,10 @@ export default config({
             testo: fields.text({ label: 'Testo (righe = paragrafi)', multiline: true }),
             passi: fields.array(
               fields.object({
-                numero: fields.text({ label: 'Numero' }),
-                titolo: fields.text({ label: 'Titolo' }),
+                titolo: fields.text({ label: 'Titolo (verbo)' }),
                 testo: fields.text({ label: 'Testo', multiline: true }),
               }),
-              { label: 'Passi (4)', itemLabel: (p) => `${p.fields.numero.value} · ${p.fields.titolo.value}` }
+              { label: 'Passi (4)', itemLabel: (p) => p.fields.titolo.value }
             ),
             linkTesto: fields.text({ label: 'Link — testo' }),
             linkLabel: fields.text({ label: 'Link — etichetta' }),

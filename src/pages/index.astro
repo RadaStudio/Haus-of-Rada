@@ -27,17 +27,21 @@ const metodo = (home as any).metodo;
         <h2>{metodo.titolo}</h2>
         {metodo.testo && metodo.testo.split('\n').filter(Boolean).map((par: string) => <p class="mtxt">{par}</p>)}
       </div>
-      <ol class="metodo-passi">
-        {(metodo.passi ?? []).map((s: any) => (
-          <li>
-            <span class="mnum">{s.numero}</span>
-            <div>
-              <h3>{s.titolo}</h3>
-              <p>{s.testo}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
+      <div class="metodo-passi" id="metodo-passi">
+        <div class="mp-track">
+          <span class="mp-line" aria-hidden="true"></span>
+          <span class="mp-fill" aria-hidden="true"></span>
+          <ol>
+            {(metodo.passi ?? []).map((s: any) => (
+              <li>
+                <span class="mp-node" aria-hidden="true"></span>
+                <h3>{s.titolo}</h3>
+                <p>{s.testo}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
       {metodo.linkLabel && (
         <p class="metodo-link">
           {metodo.linkTesto} <a href={metodo.linkHref || '/percorso'}>{metodo.linkLabel}</a>
@@ -133,25 +137,44 @@ const metodo = (home as any).metodo;
     margin: .18em 0 .5em;
   }
   .metodo-head .mtxt { color: var(--ink-soft); line-height: 1.7; margin-bottom: 1em; max-width: 60ch; }
-  .metodo-passi {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: clamp(20px, 3vw, 44px);
-    margin: clamp(40px, 6vh, 60px) 0 clamp(30px, 4vh, 40px);
+  /* linea-processo: 4 nodi collegati da una linea che si "disegna" allo scroll */
+  .metodo-passi { margin: clamp(46px, 7vh, 72px) 0 clamp(30px, 4vh, 40px); }
+  .mp-track { position: relative; }
+  .mp-track ol { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px); }
+  .mp-track li { position: relative; padding-top: 34px; text-align: center; padding-inline: clamp(4px, 1.2vw, 16px); }
+  .mp-node {
+    position: absolute; top: 0; left: 50%;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: var(--ivory); border: 1.5px solid var(--line);
+    box-shadow: 0 0 0 5px var(--ivory);
+    transform: translateX(-50%); z-index: 2;
+    transition: background .45s var(--ease), border-color .45s var(--ease), transform .45s var(--ease);
   }
-  .metodo-passi li { border-top: 1px solid var(--line); padding-top: 18px; }
-  .metodo-passi .mnum { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--amber); }
-  .metodo-passi h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(17px, 1.7vw, 21px); margin: 6px 0 8px; }
-  .metodo-passi p { color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+  .mp-line, .mp-fill { position: absolute; top: 6px; height: 1.5px; left: 12.5%; right: 12.5%; }
+  .mp-line { background: var(--line); }
+  .mp-fill { background: var(--amber); transform: scaleX(0); transform-origin: left center; transition: transform 1.5s var(--ease); }
+  .metodo-passi.drawn .mp-fill { transform: scaleX(1); }
+  .metodo-passi.drawn .mp-node { border-color: var(--amber); background: var(--amber); transform: translateX(-50%) scale(1.12); }
+  .metodo-passi.drawn li:nth-child(1) .mp-node { transition-delay: .1s; }
+  .metodo-passi.drawn li:nth-child(2) .mp-node { transition-delay: .5s; }
+  .metodo-passi.drawn li:nth-child(3) .mp-node { transition-delay: .9s; }
+  .metodo-passi.drawn li:nth-child(4) .mp-node { transition-delay: 1.3s; }
+  .mp-track h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(18px, 1.9vw, 23px); letter-spacing: -.01em; margin-bottom: 8px; }
+  .mp-track p { color: var(--ink-soft); font-size: 14px; line-height: 1.55; margin: 0 auto; max-width: 24ch; }
   .metodo-link { color: var(--ink-soft); font-size: 15px; max-width: 60ch; }
   .metodo-link a { color: var(--amber); border-bottom: 1px solid var(--amber); padding-bottom: 1px; white-space: nowrap; }
 
-  @media (max-width: 860px) {
-    .metodo-passi { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 560px) {
-    .metodo-passi { grid-template-columns: 1fr; }
+  /* mobile: la linea diventa verticale (timeline) */
+  @media (max-width: 700px) {
+    .mp-track ol { grid-template-columns: 1fr; gap: 0; }
+    .mp-track li { text-align: left; padding: 0 0 clamp(22px, 4vh, 34px) 30px; }
+    .mp-track li:last-child { padding-bottom: 0; }
+    .mp-node { top: 4px; left: 0; transform: none; }
+    .metodo-passi.drawn .mp-node { transform: scale(1.12); }
+    .mp-line, .mp-fill { top: 8px; bottom: 14px; left: 6px; right: auto; width: 1.5px; height: auto; }
+    .mp-fill { transform: scaleY(0); transform-origin: center top; }
+    .metodo-passi.drawn .mp-fill { transform: scaleY(1); }
+    .mp-track p { max-width: 40ch; }
   }
 
   /* ---------- FEATURED ---------- */
@@ -234,3 +257,27 @@ const metodo = (home as any).metodo;
     .journal-grid { grid-template-columns: 1fr; gap: 44px; }
   }
 </style>
+
+<script>
+  // blocco "metodo": la linea si disegna e i nodi si accendono quando entra in vista.
+  const mp = document.getElementById('metodo-passi');
+  if (mp) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) {
+      mp.classList.add('drawn');
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('drawn');
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+      io.observe(mp);
+    }
+  }
+</script>
